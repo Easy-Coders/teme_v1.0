@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- Required meta tags-->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <!-- Color theme for statusbar (Android only) -->
+      <meta name="theme-color" content="#2196f3">
+      <!-- Your app title -->
+      <title>Health Tracker</title>
+      <!-- Path to Framework7 Library Bundle CSS -->
+      <link rel="stylesheet" href="packages/core/css/framework7.bundle.min.css">
+	  <link rel="stylesheet" href="css/common.css">
+      <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
+      <!-- Path to your custom app styles-->
+      <style>
+         label {
+         float: right;
+		 font-weight: 300;
+         font-size: 15px;
+		 
+         }
+		 
+         .button {
+         float: right;
+         }
+         hr{
+         border: 1px solid #ddd;
+         }
+         .block-title{
+         margin-top:20px;
+         margin-bottom: 20px;
+         font-weight: 300;
+         font-size: 14px;
+         }
+         *{padding:0;margin:0;}
+         body{
+         font-family:Verdana, Geneva, sans-serif;
+         font-size:18px;
+         }
+         
+         span{
+              font-weight: 300;
+             font-size: 15px;
+         }
+         
+         .title{
+             font-size: 17px !important;
+             
+         }
+         
+         .button popup-open{
+             margin-top: 10px !important;
+         }
+         
+         
+         .float{
+         position:fixed;
+         width:60px;
+         height:60px;
+         bottom:40px;
+         right:40px;
+         background-color:#0C9;
+         color:#FFF;
+         border-radius:50px;
+         text-align:center;
+         box-shadow: 2px 2px 3px #999;
+         }
+         .my-float{
+         margin-top:22px;
+         }
+         .navbar-inner{
+                 BACKGROUND: white !important;
+         }
+        .dialog-buttons-vertical .dialog-button {
+    margin-left: 0;
+    text-align: left !important;
+    height: 48px;
+    line-height: 48px;
+    border-radius: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.page {
+  background-image: url('images/img2.jpg');
+}
+.sheet-modal{
+top:0 !important;
+}
+input[type=text]{
+			width:90px;
+			
+		 }
+      </style>
+   </head>
+<body>
+      <div id="app">
+         <div class="view view-main view-init">
+            <div class="page">
+               <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner sliding">
+                     <div class="left">
+                        <a class="link" onclick="back();">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">
+                            Back
+                        </span>
+                        </a>
+                     </div>
+                     <div class="title">Reminders</div>
+                  </div>
+               </div>
+               <div class="page-content" style="background-color: #f3eacb;">
+                  <div class="block-title">Period & Ovulation</div>
+                  <div class="block">
+                     <span>Period</span>
+                     <label class="toggle toggle-init color-blue">
+                     <input type="checkbox" id="periodChk"  onclick="check('period','periodChk');">
+                     <span class="toggle-icon"></span>
+                     </label>
+                  </div>
+                  <div class="block">
+                     <span>Fertility Window</span>
+                     <label class="toggle toggle-init color-blue">
+                     <input type="checkbox" id="fertilitywindowChk"  onclick="check('fertilitywindow','fertilitywindowChk');">
+                     <span class="toggle-icon"></span>
+                     </label>
+                  </div>
+                  <div class="block">
+                     <span>Ovulation Day</span>
+                     <label class="toggle toggle-init color-blue">
+                     <input type="checkbox" id="OvulationdayChk"  onclick="check('Ovulationday','OvulationdayChk');">
+                     <span class="toggle-icon"></span>
+                     </label>
+                  </div>
+                  <div class="block">
+                     <span>Period Input</span>
+                     <label class="toggle toggle-init color-blue">
+                     <input type="checkbox" id="periodinputChk"  onclick="check('periodinput','periodinputChk');">
+                     <span class="toggle-icon"></span>
+                     </label>
+                     <br>
+                     <span>Remind me to input period</span>
+                  </div>
+                 <!---<div class="block"> <hr> </div>
+                  <div class="block">
+                     <div class="block-title">Medicine</div>
+                   
+                     <span>Birth Control</span>
+                     <label class="toggle toggle-init color-blue">
+                     <input type="checkbox">
+                     <span class="toggle-icon"></span>
+                     </label>
+                  </div>--->
+                  <div class="block"> <hr> </div>
+                  <div class="block">
+                     <div class="block-title">Life Style</div>
+                    
+                    
+                     <span>Drink Water</span>
+                     <label class="toggle toggle-init color-blue">
+                     <input type="checkbox" id="drinkwaterChk" onclick="check('drinkwater','drinkwaterChk');">
+                     <span class="toggle-icon"></span>
+                     </label>
+                     <br>
+                     <span>10:00 AM - 09:00PM</span>
+                  </div>
+                 <div class="block"> <hr> </div>
+                  <br>
+                  <br><br>
+                  <div class="block">
+                     <a href="" class="float button open-vertical">
+                     <i class="fa fa-plus my-float"></i>
+                     </a>  
+                  </div>
+                  <div class="block" style="display:none;">
+                     
+                     <p><a class="button popup-open"  id="drinkwater" href="#" data-popup=".popup-drinkwater">Open Drink water Popup</a></p>
+                  </div>
+                  <div class="block" style="display:none;">
+                     
+                     <p><a class="button popup-open" id="period" href="#" data-popup=".popup-period">Open Period Popup</a></p>
+                  </div>
+                  <div class="block" style="display:none;">
+                     
+                     <p><a class="button popup-open" id="fertilitywindow" href="#" data-popup=".popup-fertilitywindow">Open Fertility Window Popup</a></p>
+                  </div>
+                  <div class="block" style="display:none;">
+                     
+                     <p><a class="button popup-open" id="Ovulationday" href="#" data-popup=".popup-Ovulationday">Open Ovulation Day Popup</a></p>
+                  </div>
+                  <div class="block" style="display:none;">
+                     
+                     <p><a class="button popup-open" id="periodinput" href="#" data-popup=".popup-periodinput">Open Period Input Popup</a></p>
+                  </div>
+				  <div class="block" style="display:none;">
+                     
+                     <p><a class="button popup-open" href="#" data-popup=".popup-ContraceptivePill">Open Contraceptive Pill Popup</a></p>
+                  </div>
+				  <div class="block" style="display:none;">
+                     
+                     <p><a class="button popup-open" href="#" data-popup=".popup-Injection">Open Injection Popup</a></p>
+                  </div>
+				  <div class="block" style="display:none;">
+                     
+                     <p><a class="button popup-open" href="#" data-popup=".popup-VRing">Open V-Ring Popup</a></p>
+                  </div>
+				  <div class="block" style="display:none;">
+                     
+                     <p><a class="button popup-open" href="#" data-popup=".popup-Patch">Open Patch Popup</a></p>
+                  </div>
+				  <div class="block" style="display:none;">
+                     
+                     <p><a class="button popup-open" href="#" data-popup=".popup-IUD">Open IUD Popup</a></p>
+                  </div>
+				  <div class="block" style="display:none;">
+                     
+                     <p><a class="button popup-open" href="#" data-popup=".popup-Implant">Open Implant Popup</a></p>
+                  </div>
+               </div>
+               <div class="popup popup-drinkwater" style="overflow-y:auto;background-color: #f3eacb;">
+                 
+                     
+					  <!---- form for capturing data !-----> 
+                     <!-- Close Popup -->
+                     <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner sliding">
+                     <div class="left">
+                        <a class="link popup-close" href="#">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">
+                            Back
+                        </span>
+                        </a>
+                     </div>
+                     <div class="title">Drink Water</div>
+                  </div>
+                  <a class="button popup-open" href="#" data-popup=".popup-drinkwater" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>
+               </div>
+                     <div class="block">
+                        <span>Notifications</span>
+                        <label class="toggle toggle-init color-blue">
+                        <input type="checkbox">
+                        <span class="toggle-icon"></span>
+                        </label>
+                     </div>
+					
+                     <div class="block-title">Schedule</div>
+                     <div class="block">
+					 
+                        <span>Start
+						<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-dwstart" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div>
+                     <div class="block">
+                        <span>End
+						<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-dwend" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div> 
+                     <div class="block">
+                        <span>Interval
+						 <input type="text" placeholder="Select" readonly="readonly" style="float:right; margin-top: 5px;" id="demo-picker-device-interval"/>
+						</span>
+                      
+                     </div>
+                    
+						<form class="list" id="my-form">
+	  
+	   
+						  <div class="item-content item-input">
+							<div class="item-inner">
+							  <div class="item-title item-label">Message</div>
+							  <div class="item-input-wrap">
+								<input type="text" name="name" value="It's time to drink water.">
+							  </div>
+							</div>
+						  </div>
+					   
+	  
+					   </form>	
+                  
+               </div>
+               <div class="popup popup-period" style="overflow-y:auto;background-color: #f3eacb;">
+                  
+                     <!---- form for capturing data !-----> 
+                     <!-- Close Popup -->
+                     <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner sliding">
+                     <div class="left">
+                        <a class="link popup-close" href="#">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">
+                            Back
+                        </span>
+                        </a>
+                     </div>
+                     <div class="title">Period</div>
+                  </div>
+                  <a class="button popup-open" href="#" data-popup=".popup-period" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>
+               </div>
+                     
+                     <div class="block">
+                        <span>Notifications</span>
+                        <label class="toggle toggle-init color-blue">
+                        <input type="checkbox">
+                        <span class="toggle-icon"></span>
+                        </label>
+                     </div>
+                     <div class="block">
+                        <span>Reminder   
+                            
+						<input type="text" placeholder="Select" readonly="readonly" style="float:right; margin-top: 5px;" id="demo-picker-device"/>
+						
+						</span>
+							
+                       
+                     </div>
+                     <div class="block">
+                         <span>Reminder time
+						 <input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe" style="float:right; margin-top: 5px;">
+						 </span>
+					</div>
+					
+					<form class="list" id="my-form">
+					  <div class="item-content item-input">
+							<div class="item-inner">
+							  <div class="item-title item-label">Message</div>
+							  <div class="item-input-wrap">
+								<input type="text" name="name" value="Period is expected to start in 1 day">
+							  </div>
+							</div>
+						  </div>
+					</form>
+                    
+                  </div>
+               
+               <div class="popup popup-fertilitywindow" style="overflow-y:auto;background-color: #f3eacb;">
+                  
+                     <!---- form for capturing data !-----> 
+                     <!-- Close Popup -->
+                <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner sliding">
+                     <div class="left">
+                        <a class="link popup-close" href="#">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">
+                            Back
+                        </span>
+                        </a>
+                     </div>
+                     <div class="title">Fertility Window</div>
+                  </div>
+                  <a class="button popup-open" href="#" data-popup=".popup-fertilitywindow" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>
+               </div>
+                     <div class="block">
+                        <span>Notifications</span>
+                        <label class="toggle toggle-init color-blue">
+                        <input type="checkbox">
+                        <span class="toggle-icon"></span>
+                        </label>
+                     </div>
+                     <div class="block">
+                        <span>Reminder
+						<input type="text" placeholder="Select" readonly="readonly" style="float:right; margin-top: 5px;" id="demo-picker-device-FertilityWindowreminder"/>
+						</span>
+                        
+                     </div>
+                     <div class="block">
+                        <span>Reminder time
+						<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-FertilityWindowReminderTime" style="float:right; margin-top: 5px;">
+						</span>
+                        
+                     </div>
+                     
+					<form class="list" id="my-form">
+						  <div class="item-content item-input">
+								<div class="item-inner">
+								  <div class="item-title item-label">Message</div>
+								  <div class="item-input-wrap">
+									<input type="text" name="name" value="Fertility is expected to start in 1 day.">
+								  </div>
+								</div>
+							  </div>
+					</form>
+                  
+               </div>
+               <div class="popup popup-Ovulationday" style="overflow-y:auto;background-color: #f3eacb;">
+                <!---- form for capturing data !-----> 
+                <!-- Close Popup -->
+                <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner sliding">
+                     <div class="left">
+                        <a class="link popup-close" href="#">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">
+                            Back
+                        </span>
+                        </a>
+                     </div>
+                     <div class="title">Ovulation Day</div>
+                  </div>
+                  <a class="button popup-open" href="#" data-popup=".popup-Ovulationday" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>
+               </div>
+                     <div class="block">
+                        <span>Notifications</span>
+                        <label class="toggle toggle-init color-blue">
+                        <input type="checkbox">
+                        <span class="toggle-icon"></span>
+                        </label>
+                     </div>
+                     <div class="block">
+                        <span>Reminder
+						<input type="text" placeholder="Select" readonly="readonly" style="float:right; margin-top: 5px;" id="demo-picker-device-OvulationDayReminder"/>
+						</span>
+                        
+                     </div>
+                     <div class="block">
+                        <span>Reminder time
+						<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-OvulationDayReminderTime" style="float:right; margin-top: 5px;">
+						</span>
+                     
+                     </div>
+                    <form class="list" id="my-form">
+							  <div class="item-content item-input">
+									<div class="item-inner">
+									  <div class="item-title item-label">Message</div>
+									  <div class="item-input-wrap">
+										<input type="text" name="name" value="Ovulation is expected to start in 1 day.">
+									  </div>
+									</div>
+								  </div>
+					</form>
+               </div>
+               <div class="popup popup-periodinput" style="overflow-y:auto;background-color: #f3eacb;">
+                <!---- form for capturing data !-----> 
+                <!-- Close Popup -->
+                <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner sliding">
+                     <div class="left">
+                        <a class="link popup-close" href="#">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">
+                            Back
+                        </span>
+                        </a>
+                     </div>
+                     <div class="title">Period Input</div>
+                  </div>
+                  <a class="button popup-open" href="#" data-popup=".popup-periodinput" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>
+               </div>
+                     <div class="block">
+                        <span>Notifications</span>
+                        <label class="toggle toggle-init color-blue">
+                        <input type="checkbox">
+                        <span class="toggle-icon"></span>
+                        </label>
+                     </div>
+                     <div class="block">
+                        <span>Reminder
+						<input type="text" placeholder="Select" readonly="readonly" style="float:right; margin-top: 5px;" id="demo-picker-device-PeriodInputReminder"/>
+						</span>
+                      
+                     </div>
+                     <div class="block">
+                        <span>Reminder time
+						<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-PeriodInputReminderTime" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div>
+                    <form class="list" id="my-form">
+							  <div class="item-content item-input">
+									<div class="item-inner">
+									  <div class="item-title item-label">Message</div>
+									  <div class="item-input-wrap">
+										<input type="text" name="name" value="Did you forget to input your period?">
+									  </div>
+									</div>
+								  </div>
+					</form>
+               </div>
+			  <div class="popup popup-ContraceptivePill" style="overflow-y:auto;background-color: #f3eacb;">
+					<!---- form for capturing data !-----> 
+					<!-- Close Popup -->
+					<div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Contraceptive Pill</div>
+					  </div>
+					  <a class="button popup-open" href="#" data-popup=".popup-ContraceptivePill" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>
+				   </div>
+                     <div class="block">
+                        <span>Notifications</span>
+                        <label class="toggle toggle-init color-blue">
+                        <input type="checkbox">
+                        <span class="toggle-icon"></span>
+                        </label>
+                     </div>
+                    
+                     <div class="block">
+					 
+                        <span>Reminder time
+						<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-contraceptivepillremindertime" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div>
+					 <div class="block-title">Schedule</div>
+					 <div class="block">
+                        <span>Take every day</span>
+                        <label class="toggle toggle-init color-blue">
+                        <input type="checkbox">
+                        <span class="toggle-icon"></span>
+                        </label>
+                     </div>
+					 <div class="block">
+                        <span>Take pill days
+						<input type="text" placeholder="Select Days" readonly="readonly" style="float:right; margin-top: 5px;" id="demo-picker-device-contraceptivepilltakepilldays"/>
+						</span>
+                      
+                     </div>
+					 <div class="block">
+					 
+                        <span>Break days
+						<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-contraceptivepillbreakdays" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div> 
+					 <div class="block">
+					 
+                        <span>First pill for this cycle
+						<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-contraceptivepillfirstpillforthiscycle" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div>
+                    <form class="list" id="my-form">
+							  <div class="item-content item-input">
+									<div class="item-inner">
+									  <div class="item-title item-label">Message</div>
+									  <div class="item-input-wrap">
+										<input type="text" name="name" value="Please take your Contraceptive pill.">
+									  </div>
+									</div>
+								  </div>
+					</form>
+               </div>
+			   <div class="popup popup-Injection" style="overflow-y:auto;background-color: #f3eacb;">
+					<!---- form for capturing data !-----> 
+					<!-- Close Popup -->
+					<div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Injection</div>
+					  </div>
+					  <a class="button popup-open" href="#" data-popup=".popup-Injection" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>
+				   </div>
+                     <div class="block">
+                        <span>Notifications</span>
+                        <label class="toggle toggle-init color-blue">
+                        <input type="checkbox">
+                        <span class="toggle-icon"></span>
+                        </label>
+                     </div>
+                    
+                     <div class="block">
+					 
+                        <span>Reminder time
+						<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-injectionremindertime" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div>
+					 <div class="block-title">Schedule</div>
+					
+					 <div class="block">
+                        <span>Interval
+						<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-injectioninterval" style="float:right; margin-top: 5px;">
+						</span>
+                      
+                     </div>
+					 <div class="block">
+					 
+                        <span>Next Injection
+						<input type="text" placeholder="Select date" readonly="readonly" id="demo-picker-describe-injectionnextinjection" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div> 
+					<form class="list" id="my-form">
+							<div class="item-content item-input">
+									<div class="item-inner">
+									  <div class="item-title item-label">Message</div>
+									  <div class="item-input-wrap">
+										<input type="text" name="name" value="Please go for Injection.">
+									  </div>
+									</div>
+							</div>
+					</form>
+               </div>
+			   <div class="popup popup-VRing" style="overflow-y:auto;background-color: #f3eacb;">
+					<!---- form for capturing data !-----> 
+					<!-- Close Popup -->
+					<div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">V-Ring</div>
+					  </div>
+					  <a class="button popup-open" href="#" data-popup=".popup-VRing" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>
+				   </div>
+                     <div class="block">
+                        <span>Notifications</span>
+                        <label class="toggle toggle-init color-blue">
+                        <input type="checkbox">
+                        <span class="toggle-icon"></span>
+                        </label>
+                     </div>
+                    
+                     <div class="block">
+					 
+                        <span>Reminder time
+						<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-VRingremindertime" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div>
+					 <div class="block-title">Schedule</div>
+					
+					 <div class="block">
+                        <span>Wear ring days
+						<input type="text" placeholder="Select Days" readonly="readonly" style="float:right; margin-top: 5px;" id="demo-picker-device-VRingwearringdays"/>
+						</span>
+                      
+                     </div>
+					 <div class="block">
+					 
+                        <span>Break days
+						<input type="text" placeholder="Select Days" readonly="readonly" id="demo-picker-device-VRingbreakdays" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div> 
+					 <div class="block">
+					 
+                        <span>Insert date
+						<input type="text" placeholder="Select date" readonly="readonly" id="demo-picker-describe-VRinginsertdate" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div> 
+					<form class="list" id="my-form">
+							<div class="item-content item-input">
+									<div class="item-inner">
+									  <div class="item-title item-label">Insert ring message</div>
+									  <div class="item-input-wrap">
+										<input type="text" name="name" value="Please insert your V-Ring.">
+									  </div>
+									</div>
+							</div>
+					</form>
+					<form class="list" id="my-form">
+							<div class="item-content item-input">
+									<div class="item-inner">
+									  <div class="item-title item-label">Remove ring message (after 21 days)</div>
+									  <div class="item-input-wrap">
+										<input type="text" name="name" value="Please remove your V-Ring.">
+									  </div>
+									</div>
+							</div>
+					</form>
+               </div>
+			   <div class="popup popup-Patch" style="overflow-y:auto;background-color: #f3eacb;">
+					<!---- form for capturing data !-----> 
+					<!-- Close Popup -->
+					<div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Patch</div>
+					  </div>
+					  <a class="button popup-open" href="#" data-popup=".popup-Patch" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>
+				   </div>
+                     <div class="block">
+                        <span>Notifications</span>
+                        <label class="toggle toggle-init color-blue">
+                        <input type="checkbox">
+                        <span class="toggle-icon"></span>
+                        </label>
+                     </div>
+                    
+                     <div class="block">
+					 
+                        <span>Reminder time
+						<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-patchremindertime" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div>
+					 <div class="block-title">Schedule</div>
+					 <div class="block">
+					 
+                        <span>Break days
+						<input type="text" placeholder="Select Days" readonly="readonly" id="demo-picker-device-patchbreakdays" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div> 	
+					 <div class="block">
+					 
+                        <span>First patch for this cycle
+						<input type="text" placeholder="Select date" readonly="readonly" id="demo-picker-describe-patchfirstpatchforthiscycle" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div> 
+					<form class="list" id="my-form">
+							<div class="item-content item-input">
+									<div class="item-inner">
+									  <div class="item-title item-label">Message</div>
+									  <div class="item-input-wrap">
+										<input type="text" name="name" value="Please apply the Patch.">
+									  </div>
+									</div>
+							</div>
+					</form>
+				</div>
+				<div class="popup popup-IUD" style="overflow-y:auto;background-color: #f3eacb;">
+					<!---- form for capturing data !-----> 
+					<!-- Close Popup -->
+					<div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">IUD</div>
+					  </div>
+					  <a class="button popup-open" href="#" data-popup=".popup-IUD" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>
+				   </div>
+                     <div class="block">
+                        <span>Notifications</span>
+                        <label class="toggle toggle-init color-blue">
+                        <input type="checkbox">
+                        <span class="toggle-icon"></span>
+                        </label>
+                     </div>
+                    
+                     <div class="block">
+					 
+                        <span>Reminder time
+						<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-IUDremindertime" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div>
+					 <div class="block-title">Schedule</div>
+					
+					 <div class="block">
+                        <span>Effective time
+						<input type="text" placeholder="Select Year" readonly="readonly" style="float:right; margin-top: 5px;" id="demo-picker-device-IUDeffectivetime"/>
+						</span>
+                      
+                     </div>
+					 <div class="block">
+					 
+                        <span>Check Strings
+						<input type="text" placeholder="Select option" readonly="readonly" id="demo-picker-describe-IUDcheckstring" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div> 
+					 <div class="block">
+					 
+                        <span>Insert date
+						<input type="text" placeholder="Select date" readonly="readonly" id="demo-picker-describe-IUDinsertdate" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div> 
+					<form class="list" id="my-form">
+							<div class="item-content item-input">
+									<div class="item-inner">
+									  <div class="item-title item-label">Check string message</div>
+									  <div class="item-input-wrap">
+										<input type="text" name="name" value="Please check your IUD.">
+									  </div>
+									</div>
+							</div>
+					</form>
+					<form class="list" id="my-form">
+							<div class="item-content item-input">
+									<div class="item-inner">
+									  <div class="item-title item-label">Replace IUD message</div>
+									  <div class="item-input-wrap">
+										<input type="text" name="name" value="Please go for a new IUD.">
+									  </div>
+									</div>
+							</div>
+					</form>
+               </div>
+			   <div class="popup popup-Implant" style="overflow-y:auto;background-color: #f3eacb;">
+					<!---- form for capturing data !-----> 
+					<!-- Close Popup -->
+					<div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Implant</div>
+					  </div>
+					  <a class="button popup-open" href="#" data-popup=".popup-Implant" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>
+				   </div>
+                     <div class="block">
+                        <span>Notifications</span>
+                        <label class="toggle toggle-init color-blue">
+                        <input type="checkbox">
+                        <span class="toggle-icon"></span>
+                        </label>
+                     </div>
+                    
+                     <div class="block">
+					 
+                        <span>Reminder time
+						<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-Implantremindertime" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div>
+					 <div class="block-title">Schedule</div>
+					
+					 <div class="block">
+                        <span>Effective time
+						<input type="text" placeholder="Select Year" readonly="readonly" style="float:right; margin-top: 5px;" id="demo-picker-device-Implanteffectivetime"/>
+						</span>
+                      
+                     </div>
+					 <div class="block">
+					 
+                        <span>Insert date
+						<input type="text" placeholder="Select date" readonly="readonly" id="demo-picker-describe-Implantinsertdate" style="float:right; margin-top: 5px;">
+						</span>
+                       
+                     </div> 
+					<form class="list" id="my-form">
+							<div class="item-content item-input">
+									<div class="item-inner">
+									  <div class="item-title item-label">Message</div>
+									  <div class="item-input-wrap">
+										<input type="text" name="name" value="Please go for a new Implant.">
+									  </div>
+									</div>
+							</div>
+					</form>
+					
+               </div>
+            </div>
+         </div>
+      </div>
+	  <script>
+	   function back(){
+	      location.href="hexagon.html";
+        } 	   
+	</script>
+      <!-- Path to Framework7 Library Bundle JS-->
+      <script type="text/javascript" src="packages/core/js/framework7.bundle.min.js"></script>
+      <!-- Path to your app js-->
+      <script type="text/javascript" src="js/app.js"></script>
+      
+   </body>
+</html>

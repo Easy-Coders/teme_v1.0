@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar (Android only) -->
+    <meta name="theme-color" content="#2196f3">
+    <!-- Your app title -->
+    <title>My App</title>
+    <!-- Path to Framework7 Library Bundle CSS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="packages/core/css/framework7.bundle.min.css">
+    <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
+    <!-- Path to your custom app styles background-image: url('drinkWater/images/img2.jpg');-->
+<style>
+    .page {
+    background-color: #cce6ff;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .item-title item-label{
+        font-size: 15px !important;
+    }
+    p.sansserif {
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+    p {
+    font-size: 40px; /* 14px/16=0.875em */
+    color:black;
+    }
+     
+</style>
+</head>
+
+<body>
+    <!-- App root element -->
+<div id="app">
+    <div class="view view-main view-init">
+        <div class="page">
+            
+                <!-- Static Navbar -->
+                <!---     <div class="navbar" style="background-color: black;">
+                  <div class="navbar-bg"></div>
+                <!--  <div class="navbar-inner sliding">
+                      <div class="title"></div>
+                  </div>-
+               </div>-->
+            <div class="page-content" style="padding-top: 50px;">
+                <div class="col"><p class="sansserif">Hi,add the<br>first glass of water<br>0%<br><span style="font-size: 15px;">0l of 1.75l</span>
+                </p>
+            <!--    <p class="col" id="per" value="0" font-size:130px></p>-->
+                </div>
+                
+            <div class="col" style="padding-top: 40px;"><center><button class="col button button-large button-raised button-fill" style="border-radius: 50px;" type="submit"><a class="button sheet-open" href="#" data-sheet=".my-sheet1" style="font-size: 15px;color: black;">Add a drink</a></button></center></div>
+            <div class="row" style="padding-top: 80px;text-align: center;">
+                <div class="col">
+                    <img src="images/win.png" style="height: 25px;">
+                </div>
+                <div class="col">
+                    <img src="drinkWater/images/bar-chart.png" style="height: 25px;">
+                </div>
+                <div class="col">
+                    <img src="drinkWater/images/idea.png" style="height: 25px;">
+                </div>
+                <div class="col">
+                    <img src="drinkWater/images/gear1.png" style="height: 25px;">
+                </div>
+            </div>
+
+        <!--    <div data-preset="" class="ldbar label-center col container p-3 my-3 border" id="bubble" data-value="0" style="height:230px; width:500px;">-->
+
+            <div class="sheet-modal my-sheet1" style="height: 380px;background-color: #585858;">
+                <div class="toolbar">
+                    <div class="toolbar-inner" style="background-color: #585858;">
+                    <font style="padding-left: 160px;color: #80ccff;">Select a drink</font><a class="link sheet-close" href="#" style="color: white;height: 15px;">X</a></div>
+                    
+                </div>
+
+                <div class="sheet-modal-inner">
+                <div class="container" style="width:100%;color: white;text-align: center;">
+                <div class="row" style="padding-top: 15px;">
+                    <div class="col">
+                        <a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="drinkWater/images/water_1.png" style="height: 40px;"></a><br>
+                        <span style="font-size: 12px;padding-left: 0px;" >Water</span>
+                    </div>
+                    <div class="col">
+                        <a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="drinkWater/images/coffee-cup.png" style="height: 40px;"></a><br>
+                        <span style="font-size: 12px;padding-left: 0px;" >Coffee</span>
+                    </div>
+                    <div class="col">
+                        <a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="drinkWater/images/tea.png" style="height: 40px;"></a><br>
+                        <span style="font-size: 12px;padding-left: 0px;" >Tea</span>
+                    </div>
+                </div>
+                
+                <div class="row" style="padding-top: 18px;">
+                    <div class="col">
+                        <a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="drinkWater/images/pint-of-beer.png" style="height: 40px;"></a><br>
+                        <span style="font-size: 12px;padding-left: 0px;" >Smonthla</span>
+                    </div>
+                    <div class="col">
+                        <a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="drinkWater/images/yogurt.png" style="height: 40px;"></a><br>
+                        <span style="font-size: 12px;padding-left: 0px;" >Yogurt</span>
+                    </div>
+                    <div class="col">
+                        <a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="drinkWater/images/lemonade.png" style="height: 40px;"></a><br>
+                        <span style="font-size: 12px;padding-left: 0px;" >Soda</span>
+                    </div>
+                </div>
+                
+                <div class="row" style="padding-top: 18px;">
+                    <div class="col">
+                        <a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="drinkWater/images/orange-juice.png" style="height: 40px;"></a><br>
+                        <span style="font-size: 12px;padding-left: 0px;" >Juice</span>
+                    </div>
+                    <div class="col">
+                        <a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="drinkWater/images/milk-bottle.png" style="height: 40px;"></a><br>
+                        <span style="font-size: 12px;padding-left: 0px;" >Milk</span>
+                    </div>
+                    <div class="col">
+                        <a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="drinkWater/images/wine-glass.png" style="height: 40px;"></a><br>
+                        <span style="font-size: 12px;padding-left: 0px;" >Wine</span>
+                    </div>
+                </div>
+                
+                
+                </div>
+                </div>
+
+            </div>  
+
+<!--second sheet--><!--**********************************************************************************--->
+              <div class="sheet-modal my-sheet2" style="height: 380px;">
+            <!--    <div class="toolbar">
+                  <div class="toolbar-inner">-->
+                <div class="row" style="background-color: #b3b3ff">
+                    <div class="col-2"><i class="icon icon-back"></i></div>
+                        <div class="subnavbar col-12" style="padding-left: 30px;height: 30px;background-color: #ccd9ff;padding-top: 2px;padding-bottom: 2px; text-align: center;">
+                            <div class="subnavbar-inner">
+                            <div class="segmented segmented-raised">
+                            <a class="button tab-link tab-link-active" href="#tab1" style="">Select</a>
+                            <a class="button tab-link" href="#tab2">Custom</a>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="col-2"></div>
+                    </div>
+                    <!--    <a class="link sheet-close" href="#">Done</a>-->
+                <!--    </div>
+                </div>-->
+            
+                <div class="sheet-modal-inner" style="padding-top: 25px;background-color: #ccd9ff;">
+                    <div class="page-content hide-navbar-on-scroll">
+                    <div class="tabs">
+                    <div class="tab tab-active" id="tab1" style="">
+        
+                    <table class="table" style="width:100%;">
+                    <tr>
+                    <td style="text-align:center;padding-left: 120px;">
+                        <img src="drinkWater/images/water_1.png" style="height: 45px;">
+                        <span id="level"></span><br>
+                        <span style="font-size: 14px;padding-left: 0px;" >Water</span>
+                    </td>
+                    <td>
+                        <input type="text" style="font-size: 35px;" placeholder="0 ML"  id="waterSelector"/>
+                    </td>
+                    </tr>
+                    </table>
+                
+                     </div> 
+
+                     <div class="tab" id="tab2" style="height: 100px;">
+                    <div class="container">
+                        <div class="row" style="height: 200px;">
+                    
+                            <div class="col" style="padding-left:100px; ">
+                            <img src="drinkWater/images/water_1.png" style="height: 45px;">
+                            <span id="level"></span><br>
+                            <span style="font-size: 14px;padding-left: 0px;" >Water</span>
+                        
+                            </div>
+                            <div class="col">
+                            <input type="number" style="font-size: 35px;"  id="mydiv1" name="mydiv1">
+                            </div>
+                        </div>
+                    </div>
+                    <!--    <div class="container" id="buttonContainer">
+                            
+                        <!--    <div class="row" style="padding-bottom: 3px;">
+                                <div class="col">
+                                <button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="1">1</button></div>
+                                <div class="col"><button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="2">2</button></div>
+                                <div class="col"><button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="3">3</button></div>
+                            </div>
+                            <div class="row" style="padding-bottom: 3px;">
+                                <div class="col"><button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="4">4</button></div>
+                                <div class="col"><button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="5">5</button></div>
+                                <div class="col">
+                                <button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="6">6</button></div>
+                            </div>
+                            <div class="row" style="padding-bottom: 3px;">
+                                <div class="col">
+                                <button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="7">7</button></div>
+                                <div class="col">
+                                <button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="8">8</button></div>
+                                <div class="col">
+                                <button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="9">9</button></div>
+                            </div>
+                            <div class="row" style="padding-bottom: 3px;">
+                                <div class="col">
+                                <button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill">.</button></div>
+                                <div class="col">
+                                <button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="0">0</button></div>
+                                <div class="col">
+                                <button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill"><img src="drinkWater/images/cancel.png" style="height: 18px;"></button></div>
+                                
+                            </div>
+                            <div class="row">
+                                
+                            </div>
+
+                    </div>-->
+                    </div>
+                    </div>
+                </div>
+      </div></div>
+  </div>
+  
+
+
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+
+            
+            </div>
+        </div>
+    </div>
+</div>
+      <!---<div class="panel panel-left panel-cover sidebar">
+        <div class="block">
+          <p>Hello ! Nikhil  </p>
+          <p><a class="panel-close" href="#">Close me</a></p>
+          <p><a class="panel-open" href="#" data-panel=".panel-right-1">Open Right Panel</a></p>
+        </div>
+      </div>--->
+      
+
+
+    <!-- Path to Framework7 Library Bundle JS-->
+    <script type="text/javascript" src="packages/core/js/framework7.bundle.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="drinkWater/js/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="loading-bar.js"></script>
+    <script type="text/javascript" src="loading-bar.min.js"></script>
+      </body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar (Android only) -->
+    <meta name="theme-color" content="#2196f3">
+    <!-- Your app title -->
+    <title>My App</title>
+    <!-- Path to Framework7 Library Bundle CSS -->
+    <link rel="stylesheet" href="packages/core/css/framework7.bundle.min.css">
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
+    <!-- Path to your custom app styles-->
+<style>
+
+.item-title item-label{
+        font-size: 15px !important;
+
+     }
+     
+</style>
+</head>
+<body>
+    <!-- App root element -->
+<div id="app">
+	<div class="view view-main view-init">
+		<div class="page">
+			<div class="page-content" style="">
+			  <!-- Static Navbar -->
+			  <div class="navbar" style="display:none;">
+				<div class="navbar-bg"></div>
+				<div class="navbar-inner">
+				  <div class="left">
+					<a class="link back">
+					  <i class="icon icon-back"></i>
+						<a href="#" class="panel-open" data-panel="left">
+						<i class="fa fa-bars" style="color;black"></i>
+						</a>
+					</a>
+					
+				  </div>
+				  <div class="title">TEME</div>
+			  
+				  <div class="right">  </div>
+				</div>
+			  </div>
+			  
+			  <h2> <center>Welcome</center></h2>
+			  <div class="block">
+			  <form class="list" id="my-form" action="test.php">
+				<ul>
+				  <li>
+					<div class="item-content item-input">
+					  <div class="item-inner">
+						<div class="item-title item-label" style="  font-size: 17px !important;">How long is your Menstural cycle ?</div>
+						<div class="item-input-wrap">
+						  <input type="number" name="name" placeholder="Enter Between 25-35" required validate>
+						  <span class="input-clear-button"></span>
+			  
+						</div>
+					  </div>
+					</div>
+				  </li>
+				  <li>
+					<div class="item-content item-input">
+					  <div class="item-inner">
+						<div class="item-title item-label" style="  font-size: 17px !important;">How Long is your Period ?</div>
+						<div class="item-input-wrap">
+						  <input type="number" name="email" placeholder="Enter between 4-7 days" required>
+						</div>
+					  </div>
+					</div>
+				  </li>
+				  <li>
+					<div class="item-content item-input">
+					  <div class="item-inner">
+						<div class="item-title item-label" style="  font-size: 17px !important;">When Did you last get the period</div>
+						<div class="item-input-wrap">
+							<!---<input type="date" placeholder="Select date" readonly="readonly" id=""/>--->
+							<input type="text" placeholder="Select date" readonly="readonly" id="demo-calendar-modal"/>
+						</div>
+					  </div>
+					</div>
+				  </li>
+			 
+				</ul>
+				<div class="block row">
+					<div class="col">  <button class="col button button-large button-raised" style="border-radius: 50px;"   >Cancel</button></div>
+					<div class="col"><button class="col button button-large button-raised button-fill" style="border-radius: 50px;" type="submit" onclick="sub();">Done</button></div>
+				</div>
+			  </form>
+			</div>
+			</div>
+		</div>
+    </div>
+	<script>
+	   function sub(){
+	      location.href="hexagon.html";
+        } 	   
+	   </script>
+      <!---<div class="panel panel-left panel-cover sidebar">
+        <div class="block">
+          <p>Hello ! Nikhil  </p>
+          <p><a class="panel-close" href="#">Close me</a></p>
+          <p><a class="panel-open" href="#" data-panel=".panel-right-1">Open Right Panel</a></p>
+        </div>
+      </div>--->
+      
+</div>
+
+	<!-- Path to Framework7 Library Bundle JS-->
+    <script type="text/javascript" src="packages/core/js/framework7.bundle.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/app.js"></script>
+  </body>
+</html>

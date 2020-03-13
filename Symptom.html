@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- Required meta tags-->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <!-- Color theme for statusbar (Android only) -->
+      <meta name="theme-color" content="#2196f3">
+      <!-- Your app title -->
+      <title>Health Tracker</title>
+      <!-- Path to Framework7 Library Bundle CSS -->
+      <link rel="stylesheet" href="packages/core/css/framework7.bundle.min.css">
+	  <link rel="stylesheet" href="css/common.css">
+      <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
+      <!-- Path to your custom app styles-->
+      <style>
+         label {
+         float: right;
+		 font-weight: 300;
+         font-size: 15px;
+		 
+         }
+		 
+         .button {
+         float: right;
+         }
+         hr{
+         border: 1px solid #ddd;
+         }
+         .block-title{
+         margin-top:20px;
+         margin-bottom: 20px;
+         font-weight: 300;
+         font-size: 14px;
+         }
+         *{padding:0;margin:0;}
+         body{
+         font-family:Verdana, Geneva, sans-serif;
+         font-size:18px;
+         }
+         
+         span{
+              font-weight: 300;
+             font-size: 15px;
+         }
+         
+         .title{
+             font-size: 17px !important;
+             
+         }
+         
+         .button popup-open{
+             margin-top: 10px !important;
+         }
+         
+         
+         .float{
+         position:fixed;
+         width:60px;
+         height:60px;
+         bottom:40px;
+         right:40px;
+         background-color:#0C9;
+         color:#FFF;
+         border-radius:50px;
+         text-align:center;
+         box-shadow: 2px 2px 3px #999;
+         }
+         .my-float{
+         margin-top:22px;
+         }
+         .navbar-inner{
+                 BACKGROUND: white !important;
+         }
+        .dialog-buttons-vertical .dialog-button {
+    margin-left: 0;
+    text-align: left !important;
+    height: 48px;
+    line-height: 48px;
+    border-radius: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+// Reset and Sizing
+.btn {
+  margin: .2em .1em; // Demo Only
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border: none;
+  border-bottom: .15em solid black;
+  border-radius: 2px;
+  padding: 0.65em 1.3em;
+  
+  }
+
+.btn-lg {
+  padding: 1em 2em;}
+
+.btn-sm,
+.btn-xs {
+  font-size: .85em;
+  padding: .5em 1em;}
+
+.btn-xs {
+  font-size: .85em;
+  padding: .25em .75em;}
+
+// Colors
+@mixin btn($btncolor){
+  border-color: darken($btncolor,15%);
+  background-image: linear-gradient($btncolor, darken($btncolor,5%));
+  &:hover {
+    background: linear-gradient(darken($btncolor,5%), darken($btncolor,10%));
+  }
+}
+
+.btn-default { @include btn($default);}
+.btn-primary { @include btn($primary);}
+.btn-success { @include btn($success);}
+.btn-info    { @include btn($info);}
+.btn-warning { @include btn($warning);}
+.btn-danger  { @include btn($danger);}
+
+.page {
+  background-image: url('images/img2.jpg');
+}
+
+      </style>
+   </head>
+   <body style="font-family:auto;">
+      <div id="app">
+         <div class="view view-main view-init">
+            <div class="page">
+			
+               <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner sliding">
+                     <div class="left">
+                        <a class="link" onclick="back();">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">
+                            Back
+                        </span>
+                        </a>
+                     </div>
+                     <div class="title">Add Symptom</div>
+					 <div class="right">
+                        <a class="link" onclick="back();">
+                        <img src="images/check2.png" style="height: 30px;float:left;padding-right:30px;">
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <div class="page-content" style="background-color: #f3eacb;">
+			   <div class="block-title">Recent</div>
+                  <div class="block">
+
+					<span><img src="images/Headache2.png" style="height: 40px;float:left;"> &nbsp;&nbsp;&nbsp;Headache</span>
+					  <label class="item-checkbox item-content">
+						<input type="checkbox" name="demo-checkbox" value="Books" checked="checked"/>
+						<i class="icon icon-checkbox"></i>
+				</div>
+				<div class="block">
+
+					<span><img src="images/Migraines.png" style="height: 40px;float:left;"> &nbsp;&nbsp;&nbsp;Migraines</span>
+					  <label class="item-checkbox item-content">
+						<input type="checkbox" name="demo-checkbox" value="Books" checked="checked"/>
+						<i class="icon icon-checkbox"></i>
+
+				</div>
+				<div class="block">
+
+					<span><img src="images/Dizziness.png" style="height: 40px;float:left;"> &nbsp;&nbsp;&nbsp;Dizziness<!---<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-morelutealphase" style="float:right; margin-top: 5px;">---></span>
+					  <label class="item-checkbox item-content">
+						<input type="checkbox" name="demo-checkbox" value="Books" checked="checked"/>
+						<i class="icon icon-checkbox"></i>
+					
+
+				</div>
+				<div class="block">
+
+					<span><img src="images/Acne2.png" style="height: 40px;float:left;"> &nbsp;&nbsp;&nbsp;Acne</span>
+					  <label class="item-checkbox item-content">
+						<input type="checkbox" name="demo-checkbox" value="Books" checked="checked"/>
+						<i class="icon icon-checkbox"></i>
+				</div> 
+				<div class="block">
+
+					<span><img src="images/Neckaches2.png" style="height: 40px;float:left;"> &nbsp;&nbsp;&nbsp;Neckaches</span>
+					  <label class="item-checkbox item-content">
+						<input type="checkbox" name="demo-checkbox" value="Books" checked="checked"/>
+						<i class="icon icon-checkbox"></i>
+				</div>
+				<div class="block">
+
+					<span><img src="images/Hecticfever2.png" style="height: 40px;float:left;"> &nbsp;&nbsp;&nbsp;Hectic fever</span>
+					  <label class="item-checkbox item-content">
+						<input type="checkbox" name="demo-checkbox" value="Books" checked="checked"/>
+						<i class="icon icon-checkbox"></i>
+				</div>
+				<div class="block">
+
+					<span><img src="images/Shoulderaches2.png" style="height: 40px;float:left;"> &nbsp;&nbsp;&nbsp;Shoulder aches</span>
+					  <label class="item-checkbox item-content">
+						<input type="checkbox" name="demo-checkbox" value="Books" checked="checked"/>
+						<i class="icon icon-checkbox"></i>
+				</div>
+				<div class="block">
+
+					<span><img src="images/Tenderbreasts2.png" style="height: 40px;float:left;"> &nbsp;&nbsp;&nbsp;Tender breasts</span>
+					  <label class="item-checkbox item-content">
+						<input type="checkbox" name="demo-checkbox" value="Books" checked="checked"/>
+						<i class="icon icon-checkbox"></i>
+				</div>
+				
+				
+            </div>
+         </div>
+      </div>
+	  <script>
+	   function back(){
+	      location.href="hexagon.html";
+        } 
+				
+	</script>
+      <!-- Path to Framework7 Library Bundle JS-->
+      <script type="text/javascript" src="packages/core/js/framework7.bundle.min.js"></script>
+      <!-- Path to your app js-->
+      <script type="text/javascript" src="js/app.js"></script>
+      
+   </body>
+</html>

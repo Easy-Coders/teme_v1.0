@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- Required meta tags-->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <!-- Color theme for statusbar (Android only) -->
+      <meta name="theme-color" content="#2196f3">
+      <!-- Your app title -->
+      <title>Health Tracker</title>
+      <!-- Path to Framework7 Library Bundle CSS -->
+      <link rel="stylesheet" href="packages/core/css/framework7.bundle.min.css">
+	  <link rel="stylesheet" href="css/common.css">
+      <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
+      <!-- Path to your custom app styles-->
+	  <link rel="stylesheet" href="css/Chartcss/Chart.css">
+	  <link rel="stylesheet" href="css/Chartcss/Chart.min.css">
+	  <script src="js/chartjs/Chart.bundle.js"></script>
+	  <script src="js/chartjs/Chart.bundle.min.js"></script>
+	  <script src="js/chartjs/Chart.js"></script>
+	  <script src="js/chartjs/Chart.min.js"></script>
+      <style>
+         label {
+         float: right;
+		 font-weight: 300;
+         font-size: 15px;
+		 
+         }
+		 
+         .button {
+         float: right;
+         }
+         hr{
+         border: 1px solid #ddd;
+         }
+         .block-title{
+         margin-top:20px;
+         margin-bottom: 20px;
+         font-weight: 300;
+         font-size: 14px;
+         }
+         *{padding:0;margin:0;}
+         body{
+         font-family:Verdana, Geneva, sans-serif;
+         font-size:18px;
+         }
+         
+         span{
+              font-weight: 300;
+             font-size: 15px;
+         }
+         
+         .title{
+             font-size: 17px !important;
+             
+         }
+         
+         .button popup-open{
+             margin-top: 10px !important;
+         }
+         
+         
+         .float{
+         position:fixed;
+         width:60px;
+         height:60px;
+         bottom:40px;
+         right:40px;
+         background-color:#0C9;
+         color:#FFF;
+         border-radius:50px;
+         text-align:center;
+         box-shadow: 2px 2px 3px #999;
+         }
+         .my-float{
+         margin-top:22px;
+         }
+         .navbar-inner{
+                 BACKGROUND: white !important;
+         }
+        .dialog-buttons-vertical .dialog-button {
+    margin-left: 0;
+    text-align: left !important;
+    height: 48px;
+    line-height: 48px;
+    border-radius: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+// Reset and Sizing
+.btn {
+  margin: .2em .1em; // Demo Only
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border: none;
+  border-bottom: .15em solid black;
+  border-radius: 2px;
+  padding: 0.65em 1.3em;
+  
+  }
+
+.btn-lg {
+  padding: 1em 2em;}
+
+.btn-sm,
+.btn-xs {
+  font-size: .85em;
+  padding: .5em 1em;}
+
+.btn-xs {
+  font-size: .85em;
+  padding: .25em .75em;}
+
+// Colors
+@mixin btn($btncolor){
+  border-color: darken($btncolor,15%);
+  background-image: linear-gradient($btncolor, darken($btncolor,5%));
+  &:hover {
+    background: linear-gradient(darken($btncolor,5%), darken($btncolor,10%));
+  }
+}
+
+.btn-default { @include btn($default);}
+.btn-primary { @include btn($primary);}
+.btn-success { @include btn($success);}
+.btn-info    { @include btn($info);}
+.btn-warning { @include btn($warning);}
+.btn-danger  { @include btn($danger);}
+
+.page {
+  background-color: #f3eacb;
+}
+.sheet-modal{
+top:0 !important;
+}
+</style>
+</head>
+<body style="font-family:auto;">
+<div id="app">
+    <div class="view view-main view-init">
+        <div class="page">
+			<div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner sliding">
+                     <div class="left">
+                        <a class="link" onclick="back();">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">
+                            Back
+                        </span>
+                        </a>
+                     </div>
+                     <div class="title">Symptoms</div>
+					 
+                  </div>
+            </div>
+            <div class="page-content">
+			   
+                <div class="block">
+					<span style="float:left;">
+					<img src="images/abdomen2.png" style="height: 40px;"></span> 
+					<a href="" class="button popup-open" data-popup=".popup-ReportSymptomsAbdominalCramps" style="float:left;text-transform:none;color:unset">
+					&nbsp;&nbsp;&nbsp;Abdominal Cramps</a> 
+					<!--<label style="margin-top:5px;color:slateblue;">1 Time</label>-->
+					  
+				</div>
+				<br>
+				<div class="block">
+
+					<span style="float:left;"><img src="images/breast2.png" style="height: 40px;"></span>
+					<a href="" class="button popup-open" data-popup=".popup-ReportSymptomsTenderBreasts" style="float:left;text-transform:none;color:unset">
+					&nbsp;&nbsp;&nbsp;Tender Breasts</a>
+					<!--<label style="margin-top:5px;color:slateblue;">1 Time</label>-->
+
+				</div>
+				<br>
+				<div class="block">
+
+					<span style="float:left;"><img src="images/back.png" style="height: 40px;"></span> 
+					<a href="" class="button popup-open" data-popup=".popup-ReportSymptomsLowBackPain" style="float:left;text-transform:none;color:unset">&nbsp;&nbsp;&nbsp;&nbsp;Low Back Pain</a><!---<input type="text" placeholder="Select time" readonly="readonly" id="demo-picker-describe-morelutealphase" style="float:right; margin-top: 5px;">--->
+					<!--<label style="margin-top:5px;color:slateblue;">1 Time</label>-->
+					
+
+				</div>
+				<br>
+				<div class="block">
+
+					<span style="float:left;"><img src="images/fatigue.png"style="height: 40px;"></span>  
+					<a href="" class="button popup-open" data-popup=".popup-ReportSymptomsFatigue" style="float:left;text-transform:none;color:unset">&nbsp;&nbsp;&nbsp;Fatigue</a>
+					<!--<label style="margin-top:5px;color:slateblue;">1 Time</label>-->
+				</div> 
+				<br>
+				<div class="block">
+
+					<span style="float:left;"><img src="images/insomnia.png" style="height: 40px;"></span> 
+					<a href="" class="button popup-open" data-popup=".popup-ReportSymptomsInsomnia" style="float:left;text-transform:none;color:unset">&nbsp;&nbsp;&nbsp;Insomnia</a>
+					<!--<label style="margin-top:5px;color:slateblue;">1 Time</label>-->
+				</div>
+				<br>
+				<div class="block">
+
+					<span style="float:left;"><img src="images/like.png" style="height: 40px;"></span> 
+					<a href="" class="button popup-open" data-popup=".popup-ReportSymptomsFeelGood" style="float:left;text-transform:none;color:unset">&nbsp;&nbsp;&nbsp;Feel Good</a>
+					<!--<label style="margin-top:5px;color:slateblue;">1 Time</label>-->
+				</div>
+				<br>
+				<div class="block">
+
+					<span style="float:left;"><img src="images/Headache.png" style="height: 40px;"></span> 
+					<a href="" class="button popup-open" data-popup=".popup-ReportSymptomsHeadache" style="float:left;text-transform:none;color:unset">&nbsp;&nbsp;&nbsp;Headache</a>
+					<!--<label style="margin-top:5px;color:slateblue;">0 Time</label>-->
+				</div>
+				<br>
+				<div class="block">
+
+					<span style="float:left;"><img src="images/acne.png" style="height: 40px;"></span> 
+					<a href="" class="button popup-open" data-popup=".popup-ReportSymptomsAcne" style="float:left;text-transform:none;color:unset">&nbsp;&nbsp;&nbsp;Acne</a>
+					<!--<label style="margin-top:5px;color:slateblue;">0 Time</label>-->
+				</div>
+				<br>
+				<div class="block">
+
+					<span style="float:left;"><img src="images/nausea.png" style="height: 40px;"></span> 
+					<a href="" class="button popup-open" data-popup=".popup-ReportSymptomsNausea" style="float:left;text-transform:none;color:unset">&nbsp;&nbsp;&nbsp;Nausea</a>
+					<!--<label style="margin-top:5px;color:slateblue;">0 Time</label>-->
+				</div>
+				<br>
+				<div class="block">
+
+					<span style="float:left;"><img src="images/seat.png" style="height: 40px;"></span> 
+					<a href="" class="button popup-open" data-popup=".popup-ReportSymptomsConstipation" style="float:left;text-transform:none;color:unset">&nbsp;&nbsp;&nbsp;Constipation</a>
+					<!--<label style="margin-top:5px;color:slateblue;">0 Time</label>-->
+				</div>
+				<br>
+				<div class="block">
+
+					<span style="float:left;"><img src="images/toilet.png" style="height: 40px;"></span> 
+					<a href="" class="button popup-open" data-popup=".popup-ReportSymptomsDiarrhea" style="float:left;text-transform:none;color:unset">&nbsp;&nbsp;&nbsp;Diarrhea</a>
+					<!--<label style="margin-top:5px;color:slateblue;">0 Time</label>-->
+				</div>
+				<br>
+				<div class="block">
+
+					<span style="float:left;"><img src="images/bloating.png" style="height: 40px;"></span> 
+					<a href="" class="button popup-open" data-popup=".popup-ReportSymptomsBloating" style="float:left;text-transform:none;color:unset">&nbsp;&nbsp;&nbsp;Bloating</a>
+					<!--<label style="margin-top:5px;color:slateblue;">0 Time</label>-->
+				</div>
+				<br>
+				<div class="block">
+
+					<span style="float:left;"><img src="images/fart.png" style="height: 40px;"></span> 
+					<a href="" class="button popup-open" data-popup=".popup-ReportSymptomsGas" style="float:left;text-transform:none;color:unset">&nbsp;&nbsp;&nbsp;Gas</a>
+					<!--<label style="margin-top:5px;color:slateblue;">0 Time</label>-->
+				</div>
+				<br>
+				<div class="block">
+
+					<span style="float:left;"><img src="images/drop1.png" style="height: 40px;"></span> 
+					<a href="" class="button popup-open" data-popup=".popup-ReportSymptomsSpotting" style="float:left;text-transform:none;color:unset">&nbsp;&nbsp;&nbsp;Spotting</a>
+					<!--<label style="margin-top:5px;color:slateblue;">0 Time</label>-->
+				</div>
+				<br>
+				<div class="block" style="display:none;">
+                     
+                     <p><a class="button popup-open" id="reportperiod" href="#" data-popup=".popup-reportperiod">Open Report Period Popup</a></p>
+                </div>
+			</div>
+			
+			<div class="popup popup-ReportSymptomsAbdominalCramps" style="overflow-y:auto;background-color: #f3eacb;">
+                 
+                    <!---- form for capturing data !-----> 
+                    <!-- Close Popup -->
+                    <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Abdominal Cramps</div>
+					  </div>
+					 
+					</div>
+                <div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+					<div class="block">
+					<span style="float:left;width:20%;height:60%;">
+					<img src="images/abdomen2.png" style="height: 40px;">
+					</span> 
+					<span style="float:center;font-size:20px;">Abdominal Cramps</span> <br>
+					<span style="float:center;font-size:15px;">In 30 days 1 Time</span>
+					  
+					</div>	
+				</div>
+				</div>
+				<div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+				<div class="block-title">Feb 2- Mar 4</div>
+				<br>
+					<div class="block block-strong">
+					  <div class="range-slider range-slider-init"
+						data-min="0"
+						data-max="31"
+						data-label="true"
+						data-step="5"
+						data-value="25"
+						data-scale="true"
+						data-scale-steps="5"
+						data-scale-sub-steps="4"
+					  ></div>
+					</div>
+					<br>
+				</div>
+				</div>
+				<div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+				<div class="block-title">Jan 1- Feb 1</div>
+				<br>
+					<div class="block block-strong">
+					  <div class="range-slider range-slider-init"
+						data-min="0"
+						data-max="31"
+						data-label="true"
+						data-step="5"
+						data-value="10"
+						data-scale="true"
+						data-scale-steps="5"
+						data-scale-sub-steps="4"
+					  ></div>
+					</div>
+					<br>
+				</div>
+				</div>
+				<div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+				<div class="block-title">Dec 2- Dec 31</div>
+				<br>
+					<div class="block block-strong">
+					  <div class="range-slider range-slider-init"
+						data-min="0"
+						data-max="31"
+						data-label="true"
+						data-step="5"
+						data-value="20"
+						data-scale="true"
+						data-scale-steps="5"
+						data-scale-sub-steps="4"
+					  ></div>
+					</div>
+					<br>
+				</div>
+				</div>
+				
+			</div>
+			<div class="popup popup-ReportSymptomsTenderBreasts" style="overflow-y:auto;background-color: #f3eacb;">
+                 
+                <!---- form for capturing data !-----> 
+                    <!-- Close Popup -->
+                <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Tender Breasts</div>
+					  </div>
+				</div>
+                <div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+					<div class="block">
+						<span style="float:left;width:20%;height:60%;">
+						<img src="images/breast2.png" style="height: 40px;">
+						</span> 
+						<span style="float:center;font-size:20px;">Tender Breasts</span> <br>
+						<span style="float:center;font-size:15px;">In 30 days 1 Time</span>
+						  
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="popup popup-ReportSymptomsLowBackPain" style="overflow-y:auto;background-color: #f3eacb;">
+                 
+                     
+				<!---- form for capturing data !-----> 
+                    <!-- Close Popup -->
+                <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Low Back Pain</div>
+					  </div>
+				</div>
+                <div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+					<div class="block">
+						<span style="float:left;width:20%;height:60%;">
+						<img src="images/back.png" style="height: 40px;">
+						</span> 
+						<span style="float:center;font-size:20px;">Low Back Pain</span> <br>
+						<span style="float:center;font-size:15px;">In 30 days 1 Time</span>
+						  
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="popup popup-ReportSymptomsFatigue" style="overflow-y:auto;background-color: #f3eacb;">
+                 
+                <!---- form for capturing data !-----> 
+                    <!-- Close Popup -->
+                <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Fatigue</div>
+					  </div>
+				</div>
+                <div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+					<div class="block">
+						<span style="float:left;width:20%;height:60%;">
+						<img src="images/fatigue.png" style="height: 40px;">
+						</span> 
+						<span style="float:center;font-size:20px;">Fatigue</span> <br>
+						<span style="float:center;font-size:15px;">In 30 days 1 Time</span>
+						  
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="popup popup-ReportSymptomsInsomnia" style="overflow-y:auto;background-color: #f3eacb;">
+                 
+                <!---- form for capturing data !-----> 
+                    <!-- Close Popup -->
+                <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Insomnia</div>
+					  </div>
+				</div>
+                <div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+					<div class="block">
+						<span style="float:left;width:20%;height:60%;">
+						<img src="images/insomnia.png" style="height: 40px;">
+						</span> 
+						<span style="float:center;font-size:20px;">Insomnia</span> <br>
+						<span style="float:center;font-size:15px;">In 30 days 1 Time</span>
+						  
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="popup popup-ReportSymptomsFeelGood" style="overflow-y:auto;background-color: #f3eacb;">
+                 
+                <!---- form for capturing data !-----> 
+                    <!-- Close Popup -->
+                <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Feel Good</div>
+					  </div>
+				</div>
+                <div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+					<div class="block">
+						<span style="float:left;width:20%;height:60%;">
+						<img src="images/like.png" style="height: 40px;">
+						</span> 
+						<span style="float:center;font-size:20px;">Feel Good</span> <br>
+						<span style="float:center;font-size:15px;">In 30 days 1 Time</span>
+						  
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="popup popup-ReportSymptomsHeadache" style="overflow-y:auto;background-color: #f3eacb;">
+                 
+                <!---- form for capturing data !-----> 
+                    <!-- Close Popup -->
+                <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Headache</div>
+					  </div>
+				</div>
+                <div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+					<div class="block">
+						<span style="float:left;width:20%;height:60%;">
+						<img src="images/headache.png" style="height: 40px;">
+						</span> 
+						<span style="float:center;font-size:20px;">Headache</span> <br>
+						<span style="float:center;font-size:15px;">In 30 days 1 Time</span>
+						  
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="popup popup-ReportSymptomsAcne" style="overflow-y:auto;background-color: #f3eacb;">
+                 
+                <!---- form for capturing data !-----> 
+                    <!-- Close Popup -->
+                <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Acne</div>
+					  </div>
+				</div>
+                <div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+					<div class="block">
+						<span style="float:left;width:20%;height:60%;">
+						<img src="images/acne.png" style="height: 40px;">
+						</span> 
+						<span style="float:center;font-size:20px;">Acne</span> <br>
+						<span style="float:center;font-size:15px;">In 30 days 1 Time</span>
+						  
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="popup popup-ReportSymptomsNausea" style="overflow-y:auto;background-color: #f3eacb;">
+                 
+                <!---- form for capturing data !-----> 
+                    <!-- Close Popup -->
+                <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Nausea</div>
+					  </div>
+				</div>
+                <div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+					<div class="block">
+						<span style="float:left;width:20%;height:60%;">
+						<img src="images/nausea.png" style="height: 40px;">
+						</span> 
+						<span style="float:center;font-size:20px;">Nausea</span> <br>
+						<span style="float:center;font-size:15px;">In 30 days 1 Time</span>
+						  
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="popup popup-ReportSymptomsConstipation" style="overflow-y:auto;background-color: #f3eacb;">
+                 
+                <!---- form for capturing data !-----> 
+                    <!-- Close Popup -->
+                <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Constipation</div>
+					  </div>
+				</div>
+                <div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+					<div class="block">
+						<span style="float:left;width:20%;height:60%;">
+						<img src="images/seat.png" style="height: 40px;">
+						</span> 
+						<span style="float:center;font-size:20px;">Constipation</span> <br>
+						<span style="float:center;font-size:15px;">In 30 days 1 Time</span>
+						  
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="popup popup-ReportSymptomsDiarrhea" style="overflow-y:auto;background-color: #f3eacb;">
+                 
+                <!---- form for capturing data !-----> 
+                    <!-- Close Popup -->
+                <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Diarrhea</div>
+					  </div>
+				</div>
+                <div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+					<div class="block">
+						<span style="float:left;width:20%;height:60%;">
+						<img src="images/toilet.png" style="height: 40px;">
+						</span> 
+						<span style="float:center;font-size:20px;">Diarrhea</span> <br>
+						<span style="float:center;font-size:15px;">In 30 days 1 Time</span>
+						  
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="popup popup-ReportSymptomsBloating" style="overflow-y:auto;background-color: #f3eacb;">
+                 
+                <!---- form for capturing data !-----> 
+                    <!-- Close Popup -->
+                <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Bloating</div>
+					  </div>
+				</div>
+                <div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+					<div class="block">
+						<span style="float:left;width:20%;height:60%;">
+						<img src="images/bloating.png" style="height: 40px;">
+						</span> 
+						<span style="float:center;font-size:20px;">Bloating</span> <br>
+						<span style="float:center;font-size:15px;">In 30 days 1 Time</span>
+						  
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="popup popup-ReportSymptomsGas" style="overflow-y:auto;background-color: #f3eacb;">
+                 
+                <!---- form for capturing data !-----> 
+                    <!-- Close Popup -->
+                <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Gas</div>
+					  </div>
+				</div>
+                <div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+					<div class="block">
+						<span style="float:left;width:20%;height:60%;">
+						<img src="images/fart.png" style="height: 40px;">
+						</span> 
+						<span style="float:center;font-size:20px;">Gas</span> <br>
+						<span style="float:center;font-size:15px;">In 30 days 1 Time</span>
+						  
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="popup popup-ReportSymptomsSpotting" style="overflow-y:auto;background-color: #f3eacb;">
+                 
+                <!---- form for capturing data !-----> 
+                    <!-- Close Popup -->
+                <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Spotting</div>
+					  </div>
+				</div>
+				<div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+					<div class="block">
+						<span style="float:left;width:20%;height:60%;">
+						<img src="images/drop1.png" style="height: 40px;">
+						</span> 
+						<span style="float:center;font-size:20px;">Spotting</span> <br>
+						<span style="float:center;font-size:15px;">In 30 days 1 Time</span>
+						  
+					</div>
+				</div>
+				</div>
+				<!---<div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:white;border-radius:10px;">
+				<div class="card-content card-content-padding">
+					<canvas id="Reports" width="200" height="200"></canvas>
+				</div>
+				</div>-->
+			</div>
+			
+		</div>	
+    </div>
+</div>
+<script>
+	   function back(){
+	      location.href="Reports.html";
+        } 
+				
+</script>
+<!---<script>
+var ctx = document.getElementById('Reports').getContext('2d');
+var Reports = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+        
+		labels: ['A', 'B', 'C'],
+    datasets: [
+      {
+        data: [1, 6, 11],
+        backgroundColor: '#af90ca',
+        label: 'Before'
+      },
+      {
+        data: [12, 19, 5],
+        backgroundColor: '#c46998',
+        label: 'After'
+      }
+    ]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+	
+});
+</script>--->
+      <!-- Path to Framework7 Library Bundle JS-->
+      <script type="text/javascript" src="packages/core/js/framework7.bundle.min.js"></script>
+      <!-- Path to your app js-->
+      <script type="text/javascript" src="js/app.js"></script>
+      
+   </body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- Required meta tags-->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <!-- Color theme for statusbar (Android only) -->
+      <meta name="theme-color" content="#2196f3">
+      <!-- Your app title -->
+      <title>Health Tracker</title>
+      <!-- Path to Framework7 Library Bundle CSS -->
+      <link rel="stylesheet" href="packages/core/css/framework7.bundle.min.css">
+      <link rel="stylesheet" href="css/common.css">
+      <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
+      <!-- Path to your custom app styles-->
+	  <link rel="stylesheet" href="css/Chartcss/Chart.css">
+	  <link rel="stylesheet" href="css/Chartcss/Chart.min.css">
+	  <script src="js/chartjs/Chart.bundle.js"></script>
+	  <script src="js/chartjs/Chart.bundle.min.js"></script>
+	  <script src="js/chartjs/Chart.js"></script>
+	  <script src="js/chartjs/Chart.min.js"></script>
+	  
+	  
+      <style>
+         label {
+         float: right;
+		 font-weight: 300;
+         font-size: 15px;
+		 
+         }
+		
+         hr{
+         border: 1px solid #ddd;
+         }
+         .block-title{
+         margin-top:20px;
+         margin-bottom: 20px;
+         font-weight: 300;
+         font-size: 14px;
+         }
+         *{padding:0;margin:0;}
+         body{
+         font-family:Verdana, Geneva, sans-serif;
+         font-size:18px;
+         }
+         
+         span{
+              font-weight: 300;
+             font-size: 15px;
+         }
+         
+         .title{
+             font-size: 17px !important;
+             
+         }
+         
+         .button popup-open{
+             margin-top: 10px !important;
+         }
+         
+         
+         .float{
+         position:fixed;
+         width:60px;
+         height:60px;
+         bottom:40px;
+         right:40px;
+         background-color:#0C9;
+         color:#FFF;
+         border-radius:50px;
+         text-align:center;
+         box-shadow: 2px 2px 3px #999;
+         }
+         .my-float{
+         margin-top:22px;
+         }
+         .navbar-inner{
+                 BACKGROUND: white !important;
+         }
+        .dialog-buttons-vertical .dialog-button {
+    margin-left: 0;
+    text-align: left !important;
+    height: 48px;
+    line-height: 48px;
+    border-radius: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+// Reset and Sizing
+.btn {
+  margin: .2em .1em; // Demo Only
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border: none;
+  border-bottom: .15em solid black;
+  border-radius: 2px;
+  padding: 0.65em 1.3em;
+  
+  }
+
+.btn-lg {
+  padding: 1em 2em;}
+
+.btn-sm,
+.btn-xs {
+  font-size: .85em;
+  padding: .5em 1em;}
+
+.btn-xs {
+  font-size: .85em;
+  padding: .25em .75em;}
+
+// Colors
+@mixin btn($btncolor){
+  border-color: darken($btncolor,15%);
+  background-image: linear-gradient($btncolor, darken($btncolor,5%));
+  &:hover {
+    background: linear-gradient(darken($btncolor,5%), darken($btncolor,10%));
+  }
+}
+
+.btn-default { @include btn($default);}
+.btn-primary { @include btn($primary);}
+.btn-success { @include btn($success);}
+.btn-info    { @include btn($info);}
+.btn-warning { @include btn($warning);}
+.btn-danger  { @include btn($danger);}
+
+
+.page {
+  background-color: #f3eacb;
+}
+.sheet-modal{
+top:0 !important;
+}
+ input[type=text]{
+			width:100px;
+		 }
+         
+</style>
+
+<script>
+var ctx = document.getElementById('myChart2').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Jan', 'Feb'],
+        datasets: [{
+            label: '# of water Target',
+            data: [1050, 1600],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
+                
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)'
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+	
+});
+</script>
+
+</head>
+<body>
+      <div id="app">
+         <div class="view view-main view-init">
+            <div class="page">
+			
+               <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner sliding">
+                     <div class="left">
+                        <a class="link" onclick="back();">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">
+                            Back
+                        </span>
+                        </a>
+                     </div>
+                     <div class="title">Reports</div>
+                  </div>
+               </div>
+               <div class="page-content">
+			   
+			   
+			   		<div class="block">
+
+						<span>Average value</span>
+					  
+
+					</div>
+					<div class="block">
+
+						<span>Cycle Length<input type="text" placeholder="Select" readonly="readonly" id="demo-picker-describe-morecyclelength" style="float:right; margin-top: 5px;">
+						</span>
+					  
+
+					</div>
+					<div class="block">
+
+						<span>Period Length<input type="text" placeholder="Select " readonly="readonly" id="demo-picker-describe-moreperiodlength" style="float:right; margin-top: 5px;">
+						</span>
+						  
+					</div>
+				
+				
+				
+				
+				<div>
+					  <div class="block">
+						<div class="row">
+						  
+						  <div class="col" style="height:10%;padding:15px;border-radius:10px;border:1px solid pink;"><center><a href="" style="height:0%;padding:0px;color: black;"><img src="images/calender2.png" onclick="ReportsPeriod();" style="height: 40px;"><br>Period</a></center></div>
+						  
+						  <div class="col" style="height:10%;padding:15px;border-radius:10px;border:1px solid pink;"><center><a href="" style="height:0%;padding:0px;color: black;"><img src="images/hot.png" onclick="ReportsTemprature();" style="height: 40px;"><br>Temperature</a></center></div>
+						  
+						</div>
+					  </div>
+					  
+					  <div class="block">
+						<div class="row">
+							
+						  <div class="col" style="height:10%;padding:15px;border-radius:10px;border:1px solid pink;"><center><a href="" style="height:0%;padding:0px;color: black;"><img src="images/Weight.png" onclick="ReportsWeight();" style="height: 40px;"><br>Weight</a></center></div>
+						  
+						  <!---<div class="col" style="height:10%;padding:15px;border-radius:10px;border:1px solid pink;"><center><img src="images/heart3.png" onclick="mor();" style="height: 40px;"><br>Intercourse</center></div>--->
+						  
+						 <!--  <div class="col" style="height:10%;padding:15px;border-radius:10px;border:1px solid pink;"><center><img src="images/water2.png" onclick="remind();" style="height: 40px;"><br>Drink&nbsp;Water</center></div>
+ -->
+ <div class="col" style="height:10%;padding:15px;border-radius:10px;border:1px solid pink;"><center><a href="" class="button popup-open" data-popup=".popup-reportdrinkwater" style="height:0%;padding:0px;color: black;"><img src="images/water2.png" onclick="remind();" style="height: 26px;"><br>Drink Water</a></center></div>
+						 
+							
+						 </div>
+					  </div>
+					<div class="block">
+						<div class="row">
+						<div class="col" style="height:10%;padding:15px;border-radius:10px;border:1px solid pink;"><center><a href="" style="height:10%;padding:15px;color: black;"><img src="images/symptoms2.png" onclick="ReportsSymptoms();" style="height: 40px;"><br>Symptoms</a></center></div>
+						  
+						  
+						<div class="col" style="height:10%;padding:15px;border-radius:10px;border:1px solid pink;"><center><a href="" style="height:0%;padding:0px;color: black;"><img src="images/Sleep.png" onclick="ReportsSleep();" style="height: 40px;"><br>Sleep</a></center></div>
+						  
+							
+						</div>
+					</div>
+					<div class="block">
+						<div class="row">
+							
+						 
+							<div class="col" style="height:10%;padding:15px;border-radius:10px;display:none;border:1px solid yellow;"><center><img src="images/reminder.png" onclick="remind();" style="height: 40px;"><br></center></div>
+						 
+						 </div>
+					  </div>
+				</div>
+				
+				
+				
+				
+				
+				<div class="block" style="display:none;">
+                     
+                     <p><a class="button popup-open" id="reportperiod" href="#" data-popup=".popup-reportperiod">Open Report Period Popup</a></p>
+                  </div>	
+               </div>
+			   <div class="popup popup-reportperiod" style="overflow-y:auto;background-color:#f3eacb;">
+			   <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  
+					<div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Period</div>
+					</div>
+               </div>
+               
+                <div class="block">
+
+					<span>Prediction:</span>
+					
+				</div>
+				
+				<div class="block">
+
+					<span>Cycle Length<input type="text" placeholder="Select Days" readonly="readonly" id="demo-picker-describe-reportperiodcyclelength" style="float:right; margin-top: 5px;"></span>
+					  
+
+				</div>
+				<div class="block">
+
+					<span>Period Length<input type="text" placeholder="Select Days" readonly="readonly" id="demo-picker-describe-reportperiodperiodlength" style="float:right; margin-top: 5px;"></span>
+					  
+					
+
+				</div>
+				
+				<canvas id="myChart" width="200" height="200"></canvas>
+				
+				<div class="block">
+				<center><button type="button" class="btn-info  btn-lg" style="margin-top: 84px; border-radius:10px;background-color: white;border: none; color:black; width:50%;margin-top:10%;height:10%;">+ Add Period</button></center>
+				</div>
+				
+               
+			   </div>
+			    
+
+
+
+				 <div class="popup popup-reportdrinkwater" style="overflow-y:auto;background-color:#BFCCFB;">
+			   <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  
+					<div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Drink Water</div>
+					</div>
+               </div>
+             
+				<div class="block">
+
+					<div class="row" data-popup=".popup-reportdrinkwater" style="height:10%;padding:15px;border-radius:10px;border:0px solid pink;background-color: #A3B5F9">
+						<div class="col" style="padding-left: 20px;"><a href="" class="button popup-open" data-popup=".popup-reportdrinkwatersettings" style="height: 10%">
+							<img  src="images/water1.png" style="height: 60px;"></a>
+						</div>
+						<div class="col" style="font-size: 20px;font-weight: 400;text-align: center;">
+							<font id="cupcapcity">400 ml</font><br><span>Cup capacity</span>
+						</div>
+						<div class="col" style="font-size: 20px;font-weight: 400;">
+							<font id="watertarget">2250 ml</font><br><span>Target</span>
+						</div>
+					</div>  
+				</div>
+				
+				
+				<canvas id="myChart2" width="250" height="300"></canvas>
+				
+			   </div>	
+	
+				
+            </div>
+         </div>
+      </div>
+	  <script>
+	   function back(){
+	      location.href="hexagon.html";
+        } 
+		function lock(){
+	      location.href="lockscreen.html";
+        } 
+		function ReportsPeriod(){
+	      location.href="ReportsPeriod.html";
+        }
+		function ReportsSymptoms(){
+	      location.href="ReportsSymptoms.html";
+        } 
+		function ReportsTemprature(){
+	      location.href="ReportsTemprature.html";
+        }
+		function ReportsWeight(){
+	      location.href="ReportsWeight.html";
+        } 
+		function ReportsSleep(){
+	      location.href="ReportsSleep.html";
+        } 
+	</script>
+	
+      <!-- Path to Framework7 Library Bundle JS-->
+      <script type="text/javascript" src="packages/core/js/framework7.bundle.min.js"></script>
+      <!-- Path to your app js-->
+      <script type="text/javascript" src="js/app.js"></script>
+
+      
+   </body>
+</html>

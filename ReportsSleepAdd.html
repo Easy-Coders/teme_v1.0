@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- Required meta tags-->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <!-- Color theme for statusbar (Android only) -->
+      <meta name="theme-color" content="#2196f3">
+      <!-- Your app title -->
+      <title>Health Tracker</title>
+      <!-- Path to Framework7 Library Bundle CSS -->
+      <link rel="stylesheet" href="packages/core/css/framework7.bundle.min.css">
+	  <link rel="stylesheet" href="css/common.css">
+      <link rel="stylesheet" href="css/loading-bar.css">
+      <link rel="stylesheet" href="css/loading-bar.min.css">
+      <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
+      <!-- Path to your custom app styles-->
+	  <link rel="stylesheet" href="css/Chartcss/Chart.css">
+	  <link rel="stylesheet" href="css/Chartcss/Chart.min.css">
+	  <script src="js/chartjs/Chart.bundle.js"></script>
+	  <script src="js/chartjs/Chart.bundle.min.js"></script>
+	  <script src="js/chartjs/Chart.js"></script>
+	  <script src="js/chartjs/Chart.min.js"></script>
+	  <script src="js/loading-bar.js"></script>
+	  <script src="js/loading-bar.min.js"></script>
+      <style>
+         label {
+         float: right;
+		 font-weight: 300;
+         font-size: 15px;
+		 
+         }
+		 
+         .button {
+         float: right;
+         }
+         hr{
+         border: 1px solid #ddd;
+         }
+         .block-title{
+         margin-top:20px;
+         margin-bottom: 20px;
+         font-weight: 300;
+         font-size: 14px;
+         }
+         *{padding:0;margin:0;}
+         body{
+         font-family:Verdana, Geneva, sans-serif;
+         font-size:18px;
+         }
+         
+         span{
+              font-weight: 300;
+             font-size: 15px;
+         }
+         
+         .title{
+             font-size: 17px !important;
+             
+         }
+         
+         .button popup-open{
+             margin-top: 10px !important;
+         }
+         
+         
+         .float{
+         position:fixed;
+         width:60px;
+         height:60px;
+         bottom:40px;
+         right:40px;
+         background-color:#0C9;
+         color:#FFF;
+         border-radius:50px;
+         text-align:center;
+         box-shadow: 2px 2px 3px #999;
+         }
+         .my-float{
+         margin-top:22px;
+         }
+         .navbar-inner{
+                 BACKGROUND: white !important;
+         }
+        .dialog-buttons-vertical .dialog-button {
+    margin-left: 0;
+    text-align: left !important;
+    height: 48px;
+    line-height: 48px;
+    border-radius: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+// Reset and Sizing
+.btn {
+  margin: .2em .1em; // Demo Only
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border: none;
+  border-bottom: .15em solid black;
+  border-radius: 2px;
+  padding: 0.65em 1.3em;
+  
+  }
+
+.btn-lg {
+  padding: 1em 2em;}
+
+.btn-sm,
+.btn-xs {
+  font-size: .85em;
+  padding: .5em 1em;}
+
+.btn-xs {
+  font-size: .85em;
+  padding: .25em .75em;}
+
+// Colors
+@mixin btn($btncolor){
+  border-color: darken($btncolor,15%);
+  background-image: linear-gradient($btncolor, darken($btncolor,5%));
+  &:hover {
+    background: linear-gradient(darken($btncolor,5%), darken($btncolor,10%));
+  }
+}
+
+.btn-default { @include btn($default);}
+.btn-primary { @include btn($primary);}
+.btn-success { @include btn($success);}
+.btn-info    { @include btn($info);}
+.btn-warning { @include btn($warning);}
+.btn-danger  { @include btn($danger);}
+
+.page {
+  background-color: #f3eacb;
+}
+.sheet-modal{
+top:0 !important;
+}
+button{
+	width:none;
+    background-color: #f3eacb;
+    border: none !important;
+}
+
+</style>
+</head>
+<body>
+<div id="app">
+    <div class="view view-main view-init">
+        <div class="page">
+			<div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner sliding">
+                     <div class="left">
+                        <a class="link" onclick="back();">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">
+                            Back
+                        </span>
+                        </a>
+                     </div>
+                     <div class="title">Today</div>
+					 <div class="right">
+                        <a href="" class="button popup-open" data-popup=".popup-reportaddweight" style="height:10%;padding:15px;"><i class="fa fa-plus"></i></a>
+                     </div>
+                  </div>
+            </div>
+            <div class="page-content">
+			
+			
+				
+				<center>
+				
+				<div class="block">
+					<div data-preset="bubble" class="ldBar label-center" data-value="35" style="width:200px;height:200px"></div>
+                </div>
+				<div class="block">
+					<button href="" onclick="ReportsSleepAdd2();" style="height:10%;padding:0px;"><i class="fa fa-plus-circle" id="bt" style="font-size:25px;color:#007aff"></i></button>
+                    
+				</div>
+				<div class="block">
+					<span>Sleep Record</span>
+				</div>
+				</center>
+				
+				
+				
+                
+			</div>
+				<div class="popup popup-reportaddweight" style="overflow-y:auto;background-color:#f3eacb;">
+                 
+                     
+					  <!---- form for capturing data !-----> 
+                     <!-- Close Popup -->
+                     <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Today</div>
+					  </div>
+					 
+					</div>
+                   <div class="page-content">
+				   
+						<div class="block">
+							<center>
+								
+								<span>8h 0m</span><br>
+								<span>Sleep duration</span>
+								
+							</center>
+						</div>
+						<hr>
+						<div class="block">
+							<center>
+								<div class="block block-strong">
+								  <div class="range-slider range-slider-init"
+									data-min="0"
+									data-max="24"
+									data-label="true"
+									data-step="1"
+									data-value="10"
+									data-scale="true"
+									data-scale-steps="5"
+									data-scale-sub-steps="4"
+								  ></div>
+								</div>
+								<span>Fall asleep</span>
+								
+							</center>
+						</div>
+						<hr>
+						<div class="block">
+						
+							<center>
+								<div class="block block-strong">
+								  <div class="range-slider range-slider-init"
+									data-min="0"
+									data-max="24"
+									data-label="true"
+									data-step="1"
+									data-value="8"
+									data-scale="true"
+									data-scale-steps="5"
+									data-scale-sub-steps="4"
+								  ></div>
+								</div>
+								<span>Wake up</span>
+								
+							</center>
+							
+						</div>
+						<hr>
+						<div class="block">
+							<div class="row">
+								
+								<div class="" style="width:40%";><button class="col button button-large button-raised button-fill" style="border-radius: 50px;background-color:#FF1493;color:black;color:white;" type="submit" onclick="sub();">Done</button>
+								</div>
+							</div>
+						</div>
+					
+					</div>
+				</div>
+				
+			
+		</div>	
+    </div>
+</div>
+<script>
+	   function back(){
+	      location.href="ReportsSleep.html";
+        } 
+		function ReportsSleepAdd2(){
+	      location.href="ReportsSleepAdd2.html";
+        } 
+				
+</script>
+	
+      <!-- Path to Framework7 Library Bundle JS-->
+      <script type="text/javascript" src="packages/core/js/framework7.bundle.min.js"></script>
+      <!-- Path to your app js-->
+      <script type="text/javascript" src="js/app.js"></script>
+      
+   </body>
+</html>

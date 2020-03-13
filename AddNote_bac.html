@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- Required meta tags-->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <!-- Color theme for statusbar (Android only) -->
+      <meta name="theme-color" content="#2196f3">
+      <!-- Your app title -->
+      <title>Health Tracker</title>
+      <!-- Path to Framework7 Library Bundle CSS -->
+      <link rel="stylesheet" href="packages/core/css/framework7.bundle.min.css">
+      <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
+      <!-- Path to your custom app styles-->
+      <style>
+         label {
+         float: right;
+		 font-weight: 300;
+         font-size: 15px;
+		 
+         }
+		 
+         .button {
+         float: right;
+         }
+         hr{
+         border: 1px solid #ddd;
+         }
+         .block-title{
+         margin-top:20px;
+         margin-bottom: 20px;
+         font-weight: 300;
+         font-size: 14px;
+         }
+         *{padding:0;margin:0;}
+         body{
+         font-family:Verdana, Geneva, sans-serif;
+         font-size:18px;
+         }
+         
+         span{
+              font-weight: 300;
+             font-size: 15px;
+         }
+         
+         .title{
+             font-size: 17px !important;
+             
+         }
+         
+         .button popup-open{
+             margin-top: 10px !important;
+         }
+         
+         
+         .float{
+         position:fixed;
+         width:60px;
+         height:60px;
+         bottom:40px;
+         right:40px;
+         background-color:#0C9;
+         color:#FFF;
+         border-radius:50px;
+         text-align:center;
+         box-shadow: 2px 2px 3px #999;
+         }
+         .my-float{
+         margin-top:22px;
+         }
+         .navbar-inner{
+                 BACKGROUND: white !important;
+         }
+        .dialog-buttons-vertical .dialog-button {
+    margin-left: 0;
+    text-align: left !important;
+    height: 48px;
+    line-height: 48px;
+    border-radius: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.item-title item-label{
+        font-size: 15px !important;
+
+     }
+  div[class*="col"] {
+  background: #fff;
+  text-align: center;
+  color: #000;
+  border: 1px solid #ddd;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  
+  margin-bottom: 20px;
+  font-size: 12px;
+  border-radius:100% !important;
+}
+ div[class*="label"] {
+  background: #fff;
+  text-align: center;
+  color: #000;
+  
+  padding: 0px;
+  margin-bottom: 0px;
+  font-size: 12px;
+  
+  }
+
+.grid-resizable-demo {
+  --f7-grid-row-gap: 16px;
+}
+.grid-resizable-demo div[class*="col"] {
+  margin-bottom: 0;
+}
+.grid-resizable-demo div[class*="label"] {
+  margin-bottom: 0;
+}
+.grid-resizable-demo .demo-col-center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.grid-resizable-demo .demo-label-center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.row {
+    
+    justify-content: space-around;
+	
+    
+}
+
+
+</style>
+</head>
+<body>
+<div id="app">
+    <div class="view view-main view-init">
+        <div class="page">
+            <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner sliding">
+                     <div class="left">
+                        <a class="link" onclick="back();">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">
+                            Back
+                        </span>
+                        </a>
+						
+                     </div>
+					
+                     <div class="title"></div>
+                  </div>
+            </div>
+			<div class="page-content">
+			 <div class="block block-strong no-padding">
+					  <div id="demo-calendar-inline-container"></div>
+				<br>
+			  
+				<div class="block">
+				<div class="row">
+					
+					  
+					  <button style="width:45%;" class="col button button-raised button-round">Edit Period</button>
+					  
+					   <button style="width:45%;" class="col button button-raised button-round">Add Note</button>
+					  
+					
+					
+				</div>
+			</div>
+			<br>
+			
+			
+			
+               <div class="block-title">Flow</div>
+			<div class="block">
+			  
+
+			  
+			  <div class="row">
+				<div class="col"> <i class="fa fa-tint fa-2x"></i></div>
+				<div class="col"><i class="fa fa-tint fa-2x"></i></div>
+				<div class="col"><i class="fa fa-tint fa-2x"></i></div>
+				<div class="col"><i class="fa fa-tint fa-2x"></i></div>
+				
+			  </div>
+			  <div class="row">
+				<div class="label">Light</div>
+				<div class="label">Medium</div>
+				<div class="label">Heavy</div>
+				<div class="label">Disaster</div>
+				
+			  </div>
+			 
+			  
+			</div>
+			<hr>
+				   <!--<li class="item-divider"></li>-->
+			   <div class="block-title">Intercourse</div>
+			<div class="block">
+			  
+
+			  
+			  <div class="row">
+				<div class="col"> <i class="fa fa-heart fa-2x"></i></div>
+				<div class="col"><i class="fa fa-heart fa-2x"></i></div>
+				<div class="col"><i class="fa fa-heart fa-2x"></i></div>
+				<div class="col"><i class="fa fa-heart fa-2x"></i></div>
+				
+			  </div>
+			 <div class="row">
+				<div class="label">Condom <br>Option</div>
+				<div class="label">Morning <br>After Pill</div>
+				<div class="label">Female <br>Oragasm</div>
+				<div class="label">Times</div>
+				
+			  </div>
+			  
+			</div> 
+			<hr>
+			   <div class="block-title">Life Style</div>
+			<div class="block">
+			  
+
+			  
+			  <div class="row">
+				<div class="col"> <i class="fa fa-moon fa-2x"></i></div>
+				<div class="col"><i class="fa fa-moon fa-2x"></i></div>
+				<div class="col"><i class="fa fa-moon fa-2x"></i></div>
+				<div class="col"><i class="fa fa-moon fa-2x"></i></div>
+				
+			  </div>
+			 <div class="row">
+				<div class="label">Weight</div>
+				<div class="label">Temperature</div>
+				<div class="label">Sleep</div>
+				<div class="label">Drink Water</div>
+				
+			  </div>
+			  
+			</div>  
+			<hr>
+			   <div class="block-title">Symptoms</div>
+			<div class="block">
+			  
+
+			  
+			  <div class="row">
+				<div class="col"> <i class="fa fa-thumbs-up fa-2x"></i></div>
+				<div class="col"><i class="fa fa-thumbs-up fa-2x"></i></div>
+				<div class="col"><i class="fa fa-thumbs-up fa-2x"></i></div>
+				<div class="col"><i class="fa fa-thumbs-up fa-2x"></i></div>
+				
+			  </div>
+			 <div class="row">
+				 <div class="label">Feel <br>Good</div>
+				<div class="label">Abdominal <br>Cramps</div>
+				<div class="label">Tender<br>Breasts</div>
+				<div class="label">Low Back<br>Pen</div>
+			   
+			  </div>
+			   <br>
+			   <br>
+			  <div class="row">
+				<div class="col"> <i class="fa fa-thumbs-up fa-2x"></i></div>
+				<div class="col"><i class="fa fa-thumbs-up fa-2x"></i></div>
+				<div class="col"><i class="fa fa-thumbs-up fa-2x"></i></div>
+				<div class="col"><i class="fa fa-thumbs-up fa-2x"></i></div>
+				
+			  </div>
+			 <div class="row">
+				 <div class="label">Bloating</div>
+				<div class="label">Headache</div>
+				<div class="label">Acne</div>
+				<div class="label">Nausea</div>
+				
+			  </div>
+			  
+			  <br>
+			   <br>
+			  <div class="row">
+				<div class="col"> <i class="fa fa-thumbs-up fa-2x"></i></div>
+				<div class="col"><i class="fa fa-thumbs-up fa-2x"></i></div>
+				<div class="col"><i class="fa fa-thumbs-up fa-2x"></i></div>
+				<div class="col"><i class="fa fa-thumbs-up fa-2x"></i></div>
+				
+			  </div>
+			 <div class="row">
+				 <div class="label">Fatigue</div>
+				<div class="label">Insomnia</div>
+				<div class="label">constipation</div>
+				<div class="label">Diarrhea</div>
+				<br>
+			   <br>
+			  </div><div class="row" style="width:50%">
+				<div class="col"> <i class="fa fa-thumbs-up fa-2x"></i></div>
+				<div class="col"><i class="fa fa-thumbs-up fa-2x"></i></div>
+				
+			   
+				
+			  </div>
+			 <div class="row" style="width:50%">
+				<div class="label">Gas</div>
+				<div class="label">Spotting</div>
+				
+				
+				
+			  </div>
+			</div> 
+
+
+			<hr>
+			   <div class="block-title">Moods</div>
+			<div class="block">
+			  <div class="row">
+				<div class="col"> <i class="fa fa-smile fa-2x"></i></div>
+				<div class="col"> <i class="fa fa-smile fa-2x"></i></div>
+				<div class="col"> <i class="fa fa-smile fa-2x"></i></div>
+				<div class="col"> <i class="fa fa-smile fa-2x"></i></div>
+				
+				
+			  </div>
+			 <div class="row">
+				 <div class="label">Normal</div>
+				<div class="label">Happy</div>
+				<div class="label">Angry</div>
+				<div class="label">In Love</div>
+			   
+			  </div>
+			   <br>
+			   <br>
+			  <div class="row">
+				<div class="col"> <i class="fa fa-smile fa-2x"></i></div>
+				<div class="col"> <i class="fa fa-smile fa-2x"></i></div>
+				<div class="col"> <i class="fa fa-smile fa-2x"></i></div>
+				<div class="col"> <i class="fa fa-smile fa-2x"></i></div>
+				
+			  </div>
+			 <div class="row">
+				 <div class="label">Exhausted</div>
+				<div class="label">Sad</div>
+				<div class="label">Depressed</div>
+				<div class="label">Emotional</div>
+				
+			  </div>
+			  
+			  <br>
+			   <br>
+			  <div class="row" style="width:25%">
+				<div class="col"> <i class="fa fa-smile fa-2x"></i></div>
+				
+				
+			  </div>
+			 <div class="row" style="width:25%">
+				<div class="label">Anxious</div>
+				
+			  </div>
+
+			</div> 
+			<hr>
+			   <div class="block-title">Note</div>
+			<div class="block">
+			  
+				<div style="float:left;"> <i class="fa fa-pen fa-2x"></i>Write Diary</div>
+			<br>  
+			</div>
+			<br>
+			<hr>
+			   <div class="block-title">Tests/Monitors</div>
+			<div class="block">
+			   <div class="row" style="width:75%">
+				<div class="col"> <i class="fa fa-plus fa-2x"></i></div>
+				<div class="col"> <i class="fa fa-plus fa-2x"></i></div>
+				<div class="col"> <i class="fa fa-plus fa-2x"></i></div>
+				
+			  </div>
+			 <div class="row" style="width:75%">
+				 <div class="label">Ovulation</div>
+				<div class="label">Pregnancy</div>
+				<div class="label">Fertile</div>
+				
+			  </div>
+			</div>
+			<hr>
+			   <div class="block-title">Vaginal Discharge</div>
+			<div class="block">
+			   <div class="row">
+				<div class="col"> <i class="fa fa-bolt fa-2x"></i></div>
+				<div class="col"> <i class="fa fa-bolt fa-2x"></i></div>
+				<div class="col"> <i class="fa fa-bolt fa-2x"></i></div>
+				<div class="col"> <i class="fa fa-bolt fa-2x"></i></div>
+				
+			  </div>
+			 <div class="row">
+				 <div class="label">Dry</div>
+				<div class="label">Sticky</div>
+				<div class="label">Cremy</div>
+				<div class="label">Watery</div>
+				
+			  </div>
+			  <br>
+			  <div class="row">
+				<div class="col"> <i class="fa fa-bolt fa-2x"></i></div>
+				<div class="col"> <i class="fa fa-bolt fa-2x"></i></div>
+				<div class="col"> <i class="fa fa-bolt fa-2x"></i></div>
+				<div class="col"> <i class="fa fa-bolt fa-2x"></i></div>
+				
+			  </div>
+			 <div class="row">
+				 <div class="label">Egg-white</div>
+				<div class="label">Unusual</div>
+				<div class="label">Position Cervix</div>
+				<div class="label">Texture</div>
+				
+			  </div>
+			</div>
+			
+			<hr>
+			<div class="block">
+			<button class="col button button-large button-raised button-fill" style="border-radius: 20px;" type="submit">More</button>
+
+			</div>
+            </div>
+        </div>
+	</div>
+</div>
+
+
+		<script>
+	   function back(){
+	      location.href="hexagon.html";
+        } 	   
+	   </script>
+		<!-- Path to Framework7 Library Bundle JS-->
+		<script type="text/javascript" src="packages/core/js/framework7.bundle.min.js"></script>
+      <!-- Path to your app js-->
+      <script type="text/javascript" src="js/app.js"></script>
+      
+   </body>
+</html>

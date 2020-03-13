@@ -1,0 +1,242 @@
+<head>
+  <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <!-- Color theme for statusbar (Android only) -->
+      <meta name="theme-color" content="#2196f3">
+      <!-- Your app title -->
+      <title>Health Tracker</title>
+      <!-- Path to Framework7 Library Bundle CSS -->
+      <link rel="stylesheet" href="packages/core/css/framework7.bundle.min.css">
+	  <link rel="stylesheet" href="css/common.css">
+      <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
+      <!-- Path to your custom app styles-->
+       
+  <style>
+ //.page {
+ // background-image: url('images/img2.jpg');
+//}
+  
+  
+  // Bootstrap Colors
+  $default: #ffffff;
+  $primary: #428bca;
+  $success: #5cb85c;
+  $info:    #5bc0de;
+  $warning: #f0ad4e;
+  $danger:  #d9534f;
+  
+  // Reset and Sizing
+  .btn {
+    margin: .2em .1em; // Demo Only
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    border: none;
+    border-bottom: .15em solid black;
+    border-radius: 3px;
+    padding: 0.65em 1.3em;
+	}
+  
+  .btn-lg {
+    padding: 1em 2em;}
+  
+  .btn-sm,
+  .btn-xs {
+    font-size: .85em;
+    padding: .5em 1em;}
+  
+  .btn-xs {
+    font-size: .85em;
+    padding: .25em .75em;}
+  
+  // Colors
+  @mixin btn($btncolor){
+    border-color: darken($btncolor,15%);
+    background-image: linear-gradient($btncolor, darken($btncolor,5%));
+    &:hover {
+      background: linear-gradient(darken($btncolor,5%), darken($btncolor,10%));
+    }
+  }
+  
+  .btn-default { @include btn($default);}
+  .btn-primary { @include btn($primary);}
+  .btn-success { @include btn($success);}
+  .btn-info    { @include btn($info);}
+  .btn-warning { @include btn($warning);}
+  .btn-danger  { @include btn($danger);}
+  
+  
+.calendar-header {
+		display: none;
+}
+.sheet-modal{
+top:0 !important;
+}
+  </style>
+  
+</head>
+<body>
+<div id="app">
+    <div class="view view-main view-init">
+        <div class="page">
+		<div class="page-content" id="page-content" style="background-color: #f3eacb;">
+			<span style="margin-left:20px;font-size:20px;">Childbirth </span><br> <span style="margin-left:20px;font-size:20px;">280 days left </span>
+			<a style="float:right;padding-right:10px;color:black;" onclick="buynow();"><h4>Buy <span ><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4></a>
+			<center>
+				<div style="color:#FF1493;">
+				
+				 <img src="Images/hexagonimg2.jpg" style="width:100%;"> 
+				  
+				</div> 
+			
+			</center>
+			
+			
+				<center>  
+				<p style="font-size:25px;color:purple;margin-bottom:-40px;margin-top:-10px;"> Pregnancy</p>
+			 
+				<p style="font-size:50px;color:purple;margin-bottom:-50px">0 Week</p>
+				<p style="font-size:50px;color:purple;">0 &nbsp;Days</p>
+				<hr style="margin-top:-40px; color:purple;" width="50%">
+				</center>
+			<br>
+  
+
+        <div class="card" style="height:auto;padding-top:20px;padding-bottom:20px;background-color:#f4f2f3;border-radius:10px;">
+            <div class="card-content card-content-padding">
+              <div class="block">
+                <div class="row">
+                  <!---<div class="col"><i class="fa fa-calendar fa-2x" id="demo-calendar-multiple1"></i></div>---> 
+				  <!---<div class="col"><i class="fa fa-calendar fa-2x" onclick="calendar();"></i></div>
+                  <div class="col"><i class="fas fa-chart-line fa-2x"></i></div>
+                  <div class="col"><i class="fas fa-plus-circle fa-2x" onclick="addnote();"></i></div>
+                  <div class="col"><i class="far fa-bell fa-2x" onclick="remind();"></i></div>
+                  <div class="col"><i class="fas fa-cog fa-2x" onclick="mor();"></i></div>--->
+				  
+				  <div class="col" style="height:10%;padding:15px;background-color:#e3e0e3;border-radius:10px;"><center><img src="images/calender2.png" onclick="calendar();" style="height: 40px;"><br>Calender</center></div>
+				  
+                  <div class="col" style="height:10%;padding:15px;background-color:#e3e0e3;border-radius:10px;"><center><img src="images/report2.png" onclick="reports();" style="height: 40px;"><br>Report</center></div>
+				  
+                  <div class="col" style="height:10%;padding:15px;background-color:#e3e0e3;border-radius:10px;"><center><img src="images/addnote2.png" onclick="addnote();" style="height: 40px;"><br>AddNote</center></div>
+                  
+				 
+                  
+                </div>
+              </div>
+			  <br><br>
+			  <div class="block">
+                <div class="row">
+					<div class="col" style="height:10%;padding:15px;background-color:#e3e0e3;border-radius:10px;"><center><img src="images/reminder.png" onclick="remind();" style="height: 40px;"><br>Reminders</center></div>
+				  
+				  <div class="col" style="height:10%;padding:15px;background-color:#e3e0e3;border-radius:10px;"><center><img src="images/more.png" onclick="mor();" style="height: 40px;"><br>More</center></div>
+				  
+                  	
+				 </div>
+              </div>
+			  
+            </div>
+        </div>
+		<center>
+			<div class="block">
+			<button type="button" class="btn-info  btn-lg" id="demo-calendar-multiple" style="margin-top:10px;margin-bottom:10px; border-radius:20px;   
+		background-color: #FF1493;border: none; color:white; width:50%;">Pregnancy option</button><!---<img src="images/cat.jpg" style="width:30%;float:right;">--->
+			</div>
+		</center>
+		
+		<div class="card" onclick="symptom();" style="height:6%;padding:15px;background-color:#f4f2f3;border-radius:10px;">
+			<div class="button popup-open"> <img src="images/symtom.png" style="height: 40px;float:right;"> <span style="color:black;float:left;">Add today's symptom</span></div>
+			
+		</div>
+		<div class="card" style="height:6%;padding:15px;background-color:#f4f2f3;border-radius:10px;">
+			<div class="button popup-open" data-popup=".popup-addnotewritediary"> <img src="images/writediary4.png" onclick="mor();" style="height: 40px;float:right"> <span style="color:black;float:left;">Write Diary</span></div>
+			
+			<br>  
+		</div>
+		<br>
+		<div class="block" style="display:none;">
+                     
+                     <p><a class="button popup-open" id="addnotewritediary" href="#" data-popup=".popup-addnotewritediary">Open Pregnancy Popup</a></p>
+                  </div>	
+               </div>
+			   
+			   <div class="popup popup-addnotewritediary" style="overflow-y:auto">
+                 
+                     
+					  <!---- form for capturing data !-----> 
+                     <!-- Close Popup -->
+                     <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Add Note</div>
+					  </div>
+					  <!---<a class="button popup-open" href="#" data-popup=".popup-condomoption" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>--->
+					</div>
+                   <div class="page-content" style="background-color: #f3eacb;">
+					<form class="list" id="my-form">
+					  <div class="item-content item-input">
+							<div class="item-inner">
+							  <div class="item-title item-label"></div>
+							  <div class="item-input-wrap">
+								<input type="text" name="name" value="">
+							  </div>
+							</div>
+						  </div>
+					</form>
+					<div class="block">
+						<div class="row">
+							
+							<div class="" style="width:40%";><button class="col button button-large button-raised button-fill" style="border-radius: 50px;" type="submit" onclick="sub();">Save</button>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+				
+        </div>
+        </div>
+      </div>
+    </div>
+	<script>
+	   function addnote(){
+	      location.href="AddNote.html";
+        } 	   
+	</script>
+	<script>
+	   function remind(){
+	      location.href="Reminders.html";
+        } 	   
+	</script>
+	<script>
+	   function mor(){
+	      location.href="More.html";
+        } 
+		function calendar(){
+	      location.href="Calender.html";
+        } 
+		function symptom(){
+	      location.href="Symptom.html";
+        }
+		function reports(){
+	      location.href="Reports.html";
+        } 
+		function buynow(){
+	      location.href="buynow1.html";
+        }		
+	</script>
+  
+   <script type="text/javascript" src="packages/core/js/framework7.bundle.min.js"></script>
+      <!-- Path to your app js-->
+      <script type="text/javascript" src="js/app.js"></script>
+  </body>
+  

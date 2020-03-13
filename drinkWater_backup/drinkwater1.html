@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar (Android only) -->
+    <meta name="theme-color" content="#2196f3">
+    <!-- Your app title -->
+    <title>My App</title>
+    <!-- Path to Framework7 Library Bundle CSS -->
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="../packages/core/css/framework7.bundle.min.css">
+    <link rel="stylesheet" href="../fontawesome-free-5.11.2-web/css/all.css">
+    <!-- Path to your custom app styles background-image: url('images/img2.jpg');-->
+<style>
+	.page {
+  background-image: url('images/background.jpg');
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.item-title item-label{
+        font-size: 15px !important;
+
+     }
+     p.sansserif {
+  font-family: Arial, Helvetica, sans-serif;
+  
+}
+p {
+ /* 14px/16=0.875em */
+  color:black;
+}
+     
+</style>
+</head>
+<body>
+    <!-- App root element -->
+<div id="app">
+	<div class="view view-main view-init">
+		<div class="page">
+			
+			  <!-- Static Navbar -->
+		<!---	  <div class="navbar" style="background-color: black;">
+                  <div class="navbar-bg"></div>
+                <!--  <div class="navbar-inner sliding">
+                      <div class="title"></div>
+                  </div>-
+               </div>-->
+			<div  class="page-content" style="padding-top: 20%;">
+				<div class="col"><p class="sansserif" style="font-size:38px;font-weight:700;padding-left: 10px;">Hi,add the<br>first glass of water<br><input type="text" id="percentage" style="font-size:38px;font-weight:700;padding-left: 10px;" placeholder="0%">
+				</p><span style="padding-left: 10px;font-size: 20px;font-weight: 400;">0l of 1.75l</span>
+			<!--	<p class="col" id="per" value="0" font-size:130px></p>-->
+			</div>
+
+			<div class="col" style="padding-top: 5%;">
+			<Center>
+		    <div data-preset="bubble" class="ldBar label-center" id="bubble" data-value="0" style="height:40%; width:40%;padding-top: 0%">
+		    </div>
+		    <input type="hidden" id="glassValue" value="500">
+
+		    <!-- <a onclick="drinkWater();"><img src="images/water2.png" style="height: 20px;"></a> -->
+
+		    <input type="hidden" id="waterValue" value="0" style="display: none;"> </Center>
+		 	</div>
+				
+			<div class="col" style="padding-top: 5%;"><center>
+				<button class="col button button-large button-raised button-fill" style="border-radius: 50px;width: 70%;" type="submit"><a class="button sheet-open" href="#" data-sheet=".my-sheet1" style="font-size: 15px;color: white;font-family:sans-serif;">Add a drink</a></button></center></div>
+				 <!-- <input type="hidden" id="consumed" value="0"> -->
+ 
+			<div class="row" style="padding-top: 80px;text-align: center;display: none;">
+				<div class="col">
+					<img src="images/win.png" style="height: 25px;">
+				</div>
+				<div class="col">
+					<img src="images/bar-chart.png" style="height: 25px;">
+				</div>
+				<div class="col">
+					<img src="images/idea.png" style="height: 25px;">
+				</div>
+				<div class="col">
+					<img src="images/gear1.png" style="height: 25px;">
+				</div>
+			</div>
+
+<!-- 			<div data-preset="" class="ldbar label-center col container p-3 my-3 border" id="bubble" data-value="0" style="height:230px; width:500px;">
+ -->
+			<div class="sheet-modal my-sheet1" style="height: 50%;background-image: url('images/background2.jpg');">
+    		<!--	<div class="toolbar">
+      			<!--	<div class="toolbar-inner" style="background-color: #585858;">-->
+      			<!--	<pre><a class="link sheet-close" href="#" style="color: white;height: 15px;padding-right: 0px;" ><img src="images/cancel1.png" style="height: 20px;padding-left:0%;align-self: right;"></a></pre>-->
+       			<!--</div>-->
+      				
+   		<!--		</div>-->
+
+    			<div class="sheet-modal-inner">
+    			<div class="container" style="width:100%;color: white;text-align: center;">
+
+    				<div class="row" style="padding-top: 18px;">
+						<a href="#"> 	<img src="images/info1.png" style="color: white;height: 15px;padding-left: 15px;"></a>
+						<font style="font-size: 18px;text-align: center;">Select a drink</font>
+						<a class="link sheet-close" onclick="drinkWater();" href="#" style="color: black;height: 15px;padding-right: 15px;font-size: 20px;">X</a>
+					</div>
+				<div class="row" style="padding-top: 25px;">
+					
+					<div class="col">
+	 					<a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="images/water_1.png" style="height: 40px;"></a><br>
+						<span style="font-size: 12px;padding-left: 0px;" >Water</span>
+					</div>
+					<div class="col">
+						<a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="images/coffee-cup.png" style="height: 40px;"></a><br>
+						<span style="font-size: 12px;padding-left: 0px;" >Coffee</span>
+					</div>
+					<div class="col">
+						<a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="images/tea.png" style="height: 40px;"></a><br>
+						<span style="font-size: 12px;padding-left: 0px;" >Tea</span>
+					</div>
+				</div>
+				
+				<div class="row" style="padding-top: 20px;">
+					<div class="col">
+						<a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="images/pint-of-beer.png" style="height: 40px;"></a><br>
+						<span style="font-size: 12px;padding-left: 0px;" >Smonthla</span>
+					</div>
+					<div class="col">
+						<a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="images/yogurt.png" style="height: 40px;"></a><br>
+						<span style="font-size: 12px;padding-left: 0px;" >Yogurt</span>
+					</div>
+					<div class="col">
+						<a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="images/lemonade.png" style="height: 40px;"></a><br>
+						<span style="font-size: 12px;padding-left: 0px;" >Soda</span>
+					</div>
+				</div>
+				
+				<div class="row" style="padding-top: 20px;">
+					<div class="col">
+						<a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="images/orange-juice.png" style="height: 40px;"></a><br>
+						<span style="font-size: 12px;padding-left: 0px;" >Juice</span>
+					</div>
+					<div class="col">
+						<a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="images/milk-bottle.png" style="height: 40px;"></a><br>
+						<span style="font-size: 12px;padding-left: 0px;" >Milk</span>
+					</div>
+					<div class="col">
+						<a class="sheet-open" href="#" data-sheet=".my-sheet2"><img src="images/wine-glass.png" style="height: 40px;"></a><br>
+						<span style="font-size: 12px;padding-left: 0px;" >Wine</span>
+					</div>
+				</div>
+				
+				
+				</div>
+   				</div>
+
+  			</div>	
+
+<!--second sheet--><!--**********************************************************************************--->
+			  <div class="sheet-modal my-sheet2" style="height: 50%;background-image: url('images/background2.jpg');">
+			<!--  	<div class="toolbar">
+			      <div class="toolbar-inner">-->
+			  <!--    	<div class="row" >
+			      	<div class="col-2"><i class="icon icon-back"></i></div>
+			        	
+			        	 <div class="subnavbar col-12" style="padding-left: 30px;height: 30px;background-color: #ccd9ff;padding-top: 2px;padding-bottom: 2px; text-align: center;">
+				        	<div class="subnavbar-inner">
+				          	<div class="segmented segmented-raised">
+				            <a class="button tab-link tab-link-active" href="#tab1" style="">Select</a>
+				            <a class="button tab-link" href="#tab2">Custom</a>
+				          	</div>
+				        	</div>
+				      	</div>
+
+				      	<div class="col-2"></div></div>-->
+					<!--	<a class="link sheet-close" href="#">Done</a>-->
+				<!--	</div>
+			    </div>-->
+			
+			    <div class="sheet-modal-inner" >
+			    <!--	<div class="subnavbar col-12" style="padding-left: 30px;height: 30px;background-color: #ccd9ff;padding-top: 2px;padding-bottom: 2px; text-align: center;">-->
+				        <!--	<div class="subnavbar-inner">-->
+				        	<div class="container" style="width:100%;color: white;text-align: center;">
+				        		<div class="row" style="padding-left: 0%;padding-top: 18px;">
+				        
+                     
+
+				       <!-- 	<a class="link sheet-close" href="#" style="color: white;height: 15px;padding-right: 15px;font-size: 20px;"><img src="images/left-arrow.png" style="height: 18px;"></a>-->
+				       <a class="link sheet-close" href="#">  	<img src="images/left-arrow1.png" style="height: 18px;text-align: left;padding-left: 15px;"></a>
+				        	<div class="segmented segmented-raised" style="width: 60%;text-align: center;">
+				        		
+				            <a class="button tab-link tab-link-active" href="#tab1" style="color: white;">Select</a>
+				            <a class="button tab-link" href="#tab2" style="color: white;">Custom</a>
+				          	</div>
+				        <a class="link sheet-close" href="#">  	<img src="images/check.png" style="height: 18px;padding-right: 15px;"></a>
+				          </div></div>
+				          	
+				        <!--	</div>
+				  <!--    	</div>-->
+
+			    	<div class="page-content hide-navbar-on-scroll">
+    				<div class="tabs">
+      				<div class="tab tab-active" id="tab1" style="height: 50%">
+        
+         			<div class="container" style="width:100%;padding-top: 20px;">
+					<div class="row">
+					<div class="col" style="text-align:center;padding-left: 120px;">
+	 					<img src="images/water_1.png" style="height: 45px;">
+						<span id="level"></span><br>
+						<span style="font-size: 14px;padding-left: 0px;" >Water</span>
+					</div>
+					<div class="col" style="padding-left: 10px;padding-bottom:20px;">
+						<input type="text" style="font-size: 35px;" placeholder="0 ML"  id="waterSelector"/>
+					</div>
+					</div>
+					</div>
+				
+ 					 </div>	
+
+ 					 <div class="tab" id="tab2" style="height: 50%;">
+        			<div class="container" style="width:100%;padding-top: 20px;">
+          				<div class="row" style="width: 100%">
+          			
+          					<div class="col-6" style="padding-left:120px;text-align: center;">
+          					<img src="images/water_1.png" style="height: 45px;">
+							<span id="level"></span><br>
+							<span style="font-size: 14px;padding-left: 0px;" >Water</span>
+						
+						</div>
+						<div class="col-4" style="padding-left:0px;">
+						<input type="number"  placeholder="0" style="max-width:50%;font-size: 35px;" id="customwater">
+				</div>
+					<div class="col-2" style="padding-left:0px;">
+						<input type="text" style="font-size: 35px;" value="ML">
+				</div>
+          				</div></div>
+          			<!--	<div class="container" id="buttonContainer">
+	          				
+	          			<!--	<div class="row" style="padding-bottom: 3px;">
+	          					<div class="col">
+	          					<button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="1">1</button></div>
+    							<div class="col"><button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="2">2</button></div>
+    							<div class="col"><button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="3">3</button></div>
+	          				</div>
+	          				<div class="row" style="padding-bottom: 3px;">
+	          					<div class="col"><button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="4">4</button></div>
+	          					<div class="col"><button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="5">5</button></div>
+    							<div class="col">
+    							<button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="6">6</button></div>
+	          				</div>
+	          				<div class="row" style="padding-bottom: 3px;">
+	          					<div class="col">
+	          					<button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="7">7</button></div>
+    							<div class="col">
+    							<button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="8">8</button></div>
+    							<div class="col">
+    							<button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="9">9</button></div>
+	          				</div>
+	          				<div class="row" style="padding-bottom: 3px;">
+	          					<div class="col">
+	          					<button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill">.</button></div>
+	          					<div class="col">
+    							<button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill" value="0">0</button></div>
+    							<div class="col">
+    							<button style="height: 38px;background-color:#94b8b8
+;font-size: 20px;" class="col button button-fill"><img src="images/cancel.png" style="height: 18px;"></button></div>
+    							
+	          				</div>
+	          				<div class="row">
+	          					
+	          				</div>
+
+          			</div>-->
+        			</div>
+      				</div>
+     			</div>
+      </div></div>
+  </div>
+  
+
+
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+
+			
+			</div>
+		</div>
+    </div>
+</div>
+	<script>
+	   function sub(){
+	      location.href="drinkWater1.html";
+        } 	   
+	   </script>
+
+	   <script>
+	   function back(){
+	      location.href="drinkWater1.html";
+        } 	   
+	   </script>
+
+	   <script type="text/javascript">
+	   	
+$("#buttonContainer button").click(function() {
+	var ab=$("#buttonContainer button").val();
+	$("#mydiv").val(ab);
+   //$("#myDiv").append($(this).val());
+  //alert(ab);
+});
+	   </script>
+
+
+	   <script type="text/javascript">
+	   	
+$("#waterSelector").on('change',function(ev) {
+	var ab=$(this).val();
+	var percentage=(parseInt(ab)*100)/1000;
+	var dispercentage=percentage+"%";
+	//alert(dispercentage);
+	$("#percentage").val(dispercentage);
+	//$("#mydiv").val(ab);
+   //$("#myDiv").append($(this).val());
+  //var bar1 = new ldBar("#bubble1");
+           // var bar3 = new ldBar("#percentage");
+           // alert(bar3);
+// bar3.set(percentage);
+});</script>
+
+	
+	   <script type="text/javascript">
+	   	
+$("#customwater").on('change',function(ev) {
+	var ab=$(this).val();
+	var percentage=(parseInt(ab)*100)/1000;
+	var dispercentage=percentage+"%";
+	//alert(dispercentage);
+	$("#percentage").val(dispercentage);
+	//$("#mydiv").val(ab);
+   //$("#myDiv").append($(this).val());
+  //var bar1 = new ldBar("#bubble1");
+           // var bar3 = new ldBar("#percentage");
+           // alert(bar3);
+// bar3.set(percentage);
+});</script>
+
+	 <!--   <script type="text/javascript">
+
+        function drinkWater(){
+          // alert("hii");
+            var consumed=$('#consumed').val();
+            var per=$('#per').val();
+           // alert(per);
+            var waterValue=$('#waterValue').val();
+            var glassValue=$('#glassValue').val();
+            var finalValue=parseInt(waterValue)+parseInt(glassValue);
+            $('#waterValue').val(finalValue);
+            var waterValue=$('#waterValue').val();
+            var factorPercentage=2100/100;
+            var percentage=Math.round((waterValue/2100)*100);
+            var finalValue=percentage*factorPercentage;
+            var bar1 = new ldBar("#bubble");
+            var bar3 = new ldBar("#per");
+            var bar4 = document.getElementById('per').ldBar;
+         //   var bar2 = document.getElementById('bubble').ldBar;
+          //  document.getElementById('per').innerHTML=finalValue+'%';
+            //alert(bar3);
+           // bar1.set(percentage);
+            bar3.set(percentage);
+            //bar3.set(per);
+
+            
+        }
+    </script>
+
+      -->
+          <script type="text/javascript">
+
+        function drinkWater(){
+            
+            var consumed=$('#consumed').val();
+            var waterValue=$('#waterValue').val();
+            var glassValue=$('#glassValue').val();
+            var finalValue=parseInt(waterValue)+parseInt(glassValue);
+            $('#waterValue').val(finalValue);
+            var waterValue=$('#waterValue').val();
+            var factorPercentage=2100/100;
+            var percentage=Math.round((waterValue/2100)*100);
+            var finalValue=percentage*factorPercentage;
+            var bar1 = new ldBar("#bubble");
+            var bar2 = document.getElementById('bubble').ldBar;
+            bar1.set(percentage);
+
+
+            
+        }
+    </script>
+       <!---<div class="panel panel-left panel-cover sidebar">
+        <div class="block">
+          <p>Hello ! Nikhil  </p>
+          <p><a class="panel-close" href="#">Close me</a></p>
+          <p><a class="panel-open" href="#" data-panel=".panel-right-1">Open Right Panel</a></p>
+        </div>
+      </div>--->
+      
+
+
+	<!-- Path to Framework7 Library Bundle JS-->
+    <script type="text/javascript" src="../packages/core/js/framework7.bundle.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="loading-bar.js"></script>
+     <script type="text/javascript" src="loading-bar.min.js"></script>
+     
+		<script type="text/javascript">
+			var level= document.getElementById('mydiv1').value;
+		</script>    
+  </body>
+</html>

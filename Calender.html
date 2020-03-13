@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- Required meta tags-->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <!-- Color theme for statusbar (Android only) -->
+      <meta name="theme-color" content="#2196f3">
+      <!-- Your app title -->
+      <title>Health Tracker</title>
+      <!-- Path to Framework7 Library Bundle CSS -->
+      <link rel="stylesheet" href="packages/core/css/framework7.bundle.min.css">
+	  <link rel="stylesheet" href="css/common.css">
+      <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
+      <!-- Path to your custom app styles-->
+
+</head>
+<body style="font-family:auto;">
+<div id="app">
+    <div class="view view-main view-init">
+        <div class="page">
+            <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner sliding">
+                     <div class="left">
+                        <a class="link" onclick="back();">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">
+                            Back
+                        </span>
+                        </a>
+                     </div>
+                     <div class="title"></div>
+                  </div>
+            </div>
+            
+			
+			<div class="page-content" id="page-content" style="background-color: #f3eacb;">
+
+				<div class="block block-strong no-padding" style="margin-top:1px;">
+					<div id="demo-calendar-inline-container"></div>
+				  </div>
+			<div class="block row">
+					<div class="col">  <button class="col button button-large button-raised" style="border-radius: 50px;" onclick="editPeriod();">EDIT PERIOD</button></div>
+					<div class="col">  <button class="col button button-large button-raised" style="border-radius: 50px;" onclick="addnote();"  >ADD NOTE</button></div>
+				</div>	
+
+               <div class="block-title">Cycle Day 7</div>
+				<table class="table" style="width:100%;">
+				<tr>
+					<td>
+	 					<img src="images/drop1.png" style="height: 30px;">
+						 Flow - Light
+					</td>
+					<td>
+					
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<img src="images/water.png" style="height: 30px;">  40 fl oz / 64 fl oz
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<img src="images/fatigue.png" style="height: 30px;">  Fatigue
+					</td>
+					<td>
+						<img src="images/insomnia.png" style="height: 30px;">  Insomnia
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<img src="images/exhausted.svg" style="height: 30px;">  Exhausted
+					</td>
+					<td>
+						<img src="images/sad.svg" style="height: 30px;">  Sad
+					</td>
+				
+				</tr>
+				
+				</table>			  
+			
+			
+			
+			</div>
+			<div class="block" style="display:none;">
+                     
+                     <p><a class="button popup-open"  id="condomoption" href="#" data-popup=".popup-condomoption">Open Drink water Popup</a></p>
+            </div>
+			<div class="popup popup-condomoption" style="overflow-y:auto">
+                 
+                     
+					  <!---- form for capturing data !-----> 
+                     <!-- Close Popup -->
+                     <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner sliding">
+                     <div class="left">
+                        <a class="link popup-close" href="#">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">
+                            Back
+                        </span>
+                        </a>
+                     </div>
+                     <div class="title">Condom Option</div>
+                  </div>
+                  <!---<a class="button popup-open" href="#" data-popup=".popup-condomoption" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>--->
+               </div>
+			   <div class="page-content" id="page-content">
+                    <div class="block-title">Protection</div>
+					<div class="block">
+						<div class="row">
+							<div class="col"><img src="images/drop2.png" style="height: 30px;"></div>
+							<div class="col"><img src="images/condom.png" style="height: 30px;"></div>
+						
+							<div class="col"><img src="images/drop4.png" style="height: 30px;"></div>
+							<div class="col" style="display:none;"></div>
+							
+						  </div>
+						  <div class="row">
+							<div class="label">Unprotected</div>
+							<div class="label">&nbsp;&nbsp;&nbsp;&nbsp;Condom</div>
+							<div class="label">&nbsp;&nbsp;Morning after pill</div>
+							<div class="label" style="display:none;"></div>
+							
+						  </div>
+					</div>
+					<hr>
+					<div class="block-title">Female orgasm</div>
+					<div class="block">
+						<div class="row">
+							<div class="col"><img src="images/drop2.png" style="height: 30px;"></div>
+							<div class="col"><img src="images/heart.png" style="height: 30px;"></div>
+							<div class="col" style="display:none;"></div>
+							<div class="col" style="display:none;"></div>
+						
+							
+						  </div>
+						  <div class="row">
+							<div class="label">No</div>
+							<div class="label">&nbsp;&nbsp;Yes</div>
+							<div class="label" style="display:none;"></div>
+							<div class="label" style="display:none;"></div>
+							
+						  </div>
+					</div>
+					<hr>
+                    
+					<div class="block-title">Times</div>
+					<div class="block">
+						<div class="row">
+						
+							 
+							  <div class="stepper stepper-large stepper-round stepper-init">
+								<div class="stepper-button-minus"></div>
+								<div class="stepper-input-wrap">
+								  <input type="text" value="0" min="0" max="100" step="1" readonly>
+								</div>
+								<div class="stepper-button-plus"></div>
+							  </div>
+							
+						</div>
+					</div>
+					<hr>
+					<div class="block">
+					<div class="row">
+						<div class="" style="width:40%";>  <button class="col button button-large button-raised" style="border-radius: 50px;"   >Cancel</button>
+						</div>
+						<div class="" style="width:40%";><button class="col button button-large button-raised button-fill" style="border-radius: 50px;" type="submit" onclick="sub();">Save</button>
+						</div>
+					</div>
+					</div>
+					</div>
+				</div>
+				<div class="popup popup-addnoteweight" style="overflow-y:auto">
+                 
+                     
+					  <!---- form for capturing data !-----> 
+                     <!-- Close Popup -->
+                     <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Today</div>
+					  </div>
+					  <!---<a class="button popup-open" href="#" data-popup=".popup-condomoption" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>--->
+					</div>
+                   <div class="page-content">
+					<center>Please enter your <br>weight</center></h2>
+						<div class="block">
+					
+						
+							<div class="item-content item-input">
+							  <div class="item-inner">
+								<div class="item-input-wrap">
+								<center>
+									<input type="text" placeholder="Select Weight" readonly="readonly" id="demo-picker-describe-addnoteweight"/>
+								</center>
+								</div>
+							  </div>
+							</div>
+						</div> 
+					<div class="block">
+						<div class="row">
+							
+							<div class="" style="width:40%";><button class="col button button-large button-raised button-fill" style="border-radius: 50px;" type="submit" onclick="sub();">Save</button>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>	
+                <div class="popup popup-addnotetemperature" style="overflow-y:auto">
+                 
+                     
+					  <!---- form for capturing data !-----> 
+                     <!-- Close Popup -->
+                     <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Today</div>
+					  </div>
+					  <!---<a class="button popup-open" href="#" data-popup=".popup-condomoption" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>--->
+					</div>
+                   <div class="page-content">
+					<center>Please enter your <br>temperature </center></h2>
+					<div class="block">
+					
+						
+							<div class="item-content item-input">
+							  <div class="item-inner">
+								<div class="item-input-wrap">
+								<center>
+									<input type="text" placeholder="Select temperature" readonly="readonly" id="demo-picker-describe-addnotetemperature"/>
+								</center>
+								</div>
+							  </div>
+							</div>
+					</div> 
+					<div class="block">
+						<div class="row">
+							
+							<div class="" style="width:40%";><button class="col button button-large button-raised button-fill" style="border-radius: 50px;" type="submit" onclick="sub();">Save</button>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>  
+				<div class="popup popup-addnotewritediary" style="overflow-y:auto">
+                 
+                     
+					  <!---- form for capturing data !-----> 
+                     <!-- Close Popup -->
+                     <div class="navbar">
+					  <div class="navbar-bg"></div>
+					  <div class="navbar-inner sliding">
+						 <div class="left">
+							<a class="link popup-close" href="#">
+							<i class="icon icon-back"></i>
+							<span class="if-not-md">
+								Back
+							</span>
+							</a>
+						 </div>
+						 <div class="title">Add Note</div>
+					  </div>
+					  <!---<a class="button popup-open" href="#" data-popup=".popup-condomoption" style=" margin-top: 10px !important; font-size: 15px; margin-right: 10px !important; ">Save</a>--->
+					</div>
+                   <div class="page-content">
+					<form class="list" id="my-form">
+					  <div class="item-content item-input">
+							<div class="item-inner">
+							  <div class="item-title item-label"></div>
+							  <div class="item-input-wrap">
+								<input type="text" name="name" value="">
+							  </div>
+							</div>
+						  </div>
+					</form>
+					<div class="block">
+						<div class="row">
+							
+							<div class="" style="width:40%";><button class="col button button-large button-raised button-fill" style="border-radius: 50px;" type="submit" onclick="sub();">Save</button>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+               
+        </div>
+	</div>
+</div> 
+<script>
+	   function back(){
+	      location.href="hexagon.html";
+        } 	
+		function addnote(){
+	      location.href="AddNote.html";
+        }
+		function editPeriod(){
+	      location.href="EditPeriod.html";
+        }
+</script>
+	
+		<!-- Path to Framework7 Library Bundle JS-->
+		<script type="text/javascript" src="packages/core/js/framework7.bundle.min.js"></script>
+      <!-- Path to your app js-->
+      <script type="text/javascript" src="js/app.js"></script>
+      
+   </body>
+</html>

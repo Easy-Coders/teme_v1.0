@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- Required meta tags-->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <!-- Color theme for statusbar (Android only) -->
+      <meta name="theme-color" content="#2196f3">
+      <!-- Your app title -->
+      <title>Health Tracker</title>
+      <!-- Path to Framework7 Library Bundle CSS -->
+      <link rel="stylesheet" href="packages/core/css/framework7.bundle.min.css">
+	  <link rel="stylesheet" href="css/common.css">
+      <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
+      <link rel="stylesheet" href="mystyle.css">
+      <link rel="stylesheet" href="cardcss.css">
+      <!-- Path to your custom app styles-->
+      <style>
+        
+       /* A bit of demo styles */
+.demo-swiper .swiper-slide {
+  font-size: 25px;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  color: #000;
+}
+.demo-swiper .swiper-slide {
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+.demo-swiper {
+  margin: 0px 0 35px;
+  font-size: 18px;
+  height: 100%;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide {
+  width: 100%;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide:nth-child(2n) {
+  width: 50%;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide:nth-child(3n) {
+  width: 100%;
+}
+#generic_price_table .generic_content {
+    margin-bottom: 75px;
+    width: 90%;
+}
+table{
+   font-size: 12px;
+}
+      </style>
+   </head>
+<body>
+      <div id="app">
+         <div class="view view-main view-init">
+            <div class="page">
+			
+               <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner sliding">
+                     <div class="left">
+                        <a class="link" onclick="back();">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">
+                            Back
+                        </span>
+                        </a>
+                     </div>
+                     <div class="title">Subscribe</div>
+                  </div>
+               </div>
+               <div class="page-content">
+                  <div id="generic_price_table"> 
+                  <div data-pagination='{"el": ".swiper-pagination"}' data-space-between="50" class="swiper-container swiper-init demo-swiper">
+                     <div class="swiper-pagination"></div>
+                     <div class="swiper-wrapper">
+                       <div class="swiper-slide">
+                        <div class="generic_content active clearfix">
+                        
+                           <!--HEAD PRICE DETAIL START-->
+                           <div class="generic_head_price active clearfix">
+                           
+                               <!--HEAD CONTENT START-->
+                               <div class="generic_head_content  clearfix">
+                               
+                                   <!--HEAD START-->
+                                   <div class="head_bg"></div>
+                                   <div class="head">
+                                       <span>Monthly</span>
+                                   </div>
+                                   <!--//HEAD END-->
+                                   
+                               </div>
+                               <!--//HEAD CONTENT END-->
+                               
+                               <!--PRICE START-->
+                               <div class="generic_price_tag clearfix">    
+                                   <span class="price">
+                                       <span class="sign"><!-- <img src="Images/rupee.jpg" style="height: 50px;background-color: #f6f6f6;;"> -->Rs</span>
+                                       <span class="currency">150</span>
+                                       <span class="cent">.00</span>
+                                       <span class="month">/MON</span>
+                                   </span>
+                               </div>
+                               <!--//PRICE END-->
+                               
+                           </div>                            
+                           <!--//HEAD PRICE DETAIL END-->
+                           
+                           <!--FEATURE LIST START-->
+                           <div class="generic_feature_list">
+                               <ul>
+                                   <li><span>Water</span>  Reminder</li>
+                                   <li><span>Period/Pregnancy</span>  Tracker</li>
+                                   <li class="popup-open" href="#" data-popup=".popup-about"><span>28</span> Sanitary Pads</li>
+                                   
+                               </ul>
+                           </div>
+                           <!--//FEATURE LIST END-->
+                           
+                           <!--BUTTON START-->
+                           <div class="generic_price_btn clearfix">
+                               <a class="" href="">Subscribe Now</a>
+                           </div>
+                           <!--//BUTTON END-->
+                           
+                       </div>
+                       </div>
+                       <div class="swiper-slide">
+                        <div class="popup popup-about">
+                           <div class="">
+                            <!-- Close Popup -->
+                            <div class="navbar">
+                              <div class="navbar-bg"></div>
+                              <div class="navbar-inner sliding">
+                                <div class="left">
+                                  <a class="link popup-close" href="#">
+                                  <i class="icon icon-back"></i>
+                                  <span class="if-not-md">
+                                     Back
+                                  </span>
+                                  </a>
+                                </div>
+                                <div class="title"> Sanitary Pad Details</div>
+                              </div>
+                            </div>
+            
+                             <div class="block">
+                                   <table class="table" border="" style="border-collapse: collapse; width:100%;overflow-y: scroll;" cellpadding="">
+                                      <tr>
+                                        <th>Days</th>
+                                        <th>Time Interval</th>
+                                        <th>Types of Pad</th>
+                                        <th>No of Pads</th>
+                                       
+                                       
+                                       </tr>
+                                       <tr>
+                                          <td>Day 1</td>
+                                          <td>
+                                          <table class="table" border="" style="border-collapse: collapse; width:100%;" cellpadding="">
+                                          
+                                             <td>6am - 10am </td>
+                                           </tr>
+                                           <tr>
+                                             <td>10am - 1pm </td>
+                                           </tr>
+                                           <tr>
+                                             <td>1pm - 5pm </td>
+                                           </tr>
+                                           <tr>
+                                             <td>5pm - 10pm </td>
+                                          </tr>
+                                             <td>10pm - 6am </td>
+                                           
+                                          
+                                          </table>
+                                       </td>
+                                       <td>
+                                          <table class="table" border="" style="border-collapse: collapse; width:100%;" cellpadding="">
+                                          
+                                             <td>Ultra Dry & Clean                                 </td>
+                                           </tr>
+                                           <tr>
+                                             <td>Maxi Dry Heavy flow
+                                             </td>
+                                           </tr>
+                                           <tr>
+                                             <td>Anti Bacterial Ultra </td>
+                                           </tr>
+                                           <tr>
+                                             <td>Ultra Cottony Soft
+                                             </td>
+                                          </tr>
+                                             <td>Maxi Cottony Aloe-Vera</td>
+                                           
+                                          
+                                          </table>
+                                       </td>
+                                       <td align="center">5</td>
+                                       </tr>
+                                       <tr>
+                                          <td>Day 2</td>
+                                          <td>
+                                          <table class="table" border="" style="border-collapse: collapse; width:100%;" cellpadding="">
+                                          
+                                             <td>6am - 10am </td>
+                                           </tr>
+                                           <tr>
+                                             <td>10am - 1pm </td>
+                                           </tr>
+                                           <tr>
+                                             <td>1pm - 5pm </td>
+                                           </tr>
+                                           <tr>
+                                             <td>5pm - 10pm </td>
+                                          </tr>
+                                             <td>10pm - 6am </td>
+                                           
+                                          
+                                          </table>
+                                       </td>
+                                       <td>
+                                          <table class="table" border="" style="border-collapse: collapse; width:100%;" cellpadding="">
+                                          
+                                             <td>Ultra Dry & Clean                                 </td>
+                                           </tr>
+                                           <tr>
+                                             <td>Maxi Dry Heavy flow
+                                             </td>
+                                           </tr>
+                                           <tr>
+                                             <td>Anti Bacterial Ultra </td>
+                                           </tr>
+                                           <tr>
+                                             <td>Ultra Cottony Soft
+                                             </td>
+                                          </tr>
+                                             <td>Maxi Cottony Aloe-Vera</td>
+                                           
+                                          
+                                          </table>
+                                       </td>
+                                       <td align="center">5</td>
+                                       </tr> 
+                                       
+                                       <tr>
+                                          <td>Day 3</td>
+                                          <td>
+                                          <table class="table" border="" style="border-collapse: collapse; width:100%;" cellpadding="">
+                                          
+                                             <td>6am - 10am </td>
+                                           </tr>
+                                           <tr>
+                                             <td>10am - 1pm </td>
+                                           </tr>
+                                           <tr>
+                                             <td>1pm - 5pm </td>
+                                           </tr>
+                                           <tr>
+                                             <td>5pm - 10pm </td>
+                                          </tr>
+                                             <td>10pm - 6am </td>
+                                           
+                                          
+                                          </table>
+                                       </td>
+                                       <td>
+                                          <table class="table" border="" style="border-collapse: collapse; width:100%;" cellpadding="">
+                                          
+                                             <td>Ultra Dry & Clean                                 </td>
+                                           </tr>
+                                           <tr>
+                                             <td>Maxi Dry Heavy flow
+                                             </td>
+                                           </tr>
+                                           <tr>
+                                             <td>Anti Bacterial Ultra </td>
+                                           </tr>
+                                           <tr>
+                                             <td>Ultra Cottony Soft
+                                             </td>
+                                          </tr>
+                                             <td>Maxi Cottony Aloe-Vera</td>
+                                           
+                                          
+                                          </table>
+                                       </td>
+                                       <td align="center">5</td>
+                                       </tr>
+            
+                                       <tr>
+                                          <td>Day 4</td>
+                                          <td>
+                                          <table class="table" border="" style="border-collapse: collapse; width:100%;" cellpadding="">
+                                          
+                                             <td>6am - 1pm </td>
+                                           </tr>
+                                          
+                                           <tr>
+                                             <td>1pm - 5pm </td>
+                                           </tr>
+                                           <tr>
+                                             <td>5pm - 10pm </td>
+                                          </tr>
+                                             <td>10pm - 6am </td>                              
+                                          </table>
+                                       </td>
+                                       <td>
+                                          <table class="table" border="" style="border-collapse: collapse; width:100%;" cellpadding="">
+                                          
+                                           
+                                           </tr>
+                                           <tr>
+                                             <td>Maxi Dry Heavy flow
+                                             </td>
+                                           </tr>
+                                           <tr>
+                                             <td>Anti Bacterial Ultra </td>
+                                           </tr>
+                                           <tr>
+                                             <td>Ultra Cottony Soft
+                                             </td>
+                                          </tr>
+                                             <td>Maxi Cottony Aloe-Vera</td>
+                                           
+                                          
+                                          </table>
+                                       </td>
+                                       <td align="center">4</td>
+                                       </tr>
+            
+            
+                                       <tr>
+                                          <td>Day 5</td>
+                                          <td>
+                                          <table class="table" border="" style="border-collapse: collapse; width:100%;" cellpadding="">
+                                          
+                                             <td>6am - 1pm </td>
+                                           </tr>
+                                          
+                                           <tr>
+                                             <td>1pm - 10pm </td>
+                                           </tr>
+                                         
+                                             <td>10pm - 6am </td>                              
+                                          </table>
+                                       </td>
+                                       <td>
+                                          <table class="table" border="" style="border-collapse: collapse; width:100%;" cellpadding="">
+                                          
+                                           
+                                           </tr>
+                                        
+                                           <tr>
+                                             <td>Anti Bacterial Ultra </td>
+                                           </tr>
+                                           <tr>
+                                             <td>Maxi Dry Heavy flow
+                                             </td>
+                                           </tr>
+                                           <tr>
+                                            
+                                          </tr>
+                                             <td>Maxi Cottony Aloe-Vera</td>
+                                           
+                                          
+                                          </table>
+                                       </td>
+                                       <td align="center">3</td>
+                                       </tr>
+            
+                                       <tr>
+                                          <td>Day 6</td>
+                                          <td>
+                                          <table class="table" border="" style="border-collapse: collapse; width:100%;" cellpadding="">
+                                          
+                                             <td>6am - 1pm </td>
+                                           </tr>
+                                          
+                                           <tr>
+                                             <td>1pm - 10pm </td>
+                                           </tr>
+                                         
+                                             <td>10pm - 6am </td>                              
+                                          </table>
+                                       </td>
+                                       <td>
+                                          <table class="table" border="" style="border-collapse: collapse; width:100%;" cellpadding="">
+                                          
+                                           
+                                           </tr>
+                                        
+                                           <tr>
+                                             <td>Anti Bacterial Ultra </td>
+                                           </tr>
+                                           <tr>
+                                             <td>Maxi Dry Heavy flow
+                                             </td>
+                                           </tr>
+                                           <tr>
+                                            
+                                          </tr>
+                                             <td>Maxi Cottony Aloe-Vera</td>
+                                           
+                                          
+                                          </table>
+                                       </td>
+                                       <td align="center">3</td>
+                                       </tr>
+                                       <tr>
+                                          <td>Day 7</td>
+                                          <td>
+                                          <table class="table" border="" style="border-collapse: collapse; width:100%;" cellpadding="">
+                                          
+                                             <td>6am - 1pm </td>
+                                           </tr>
+                                          
+                                           <tr>
+                                             <td>1pm - 10pm </td>
+                                           </tr>
+                                         
+                                             <td>10pm - 6am </td>                              
+                                          </table>
+                                       </td>
+                                       <td>
+                                          <table class="table" border="" style="border-collapse: collapse; width:100%;" cellpadding="">
+                                          
+                                           
+                                           </tr>
+                                        
+                                           <tr>
+                                             <td>Anti Bacterial Ultra </td>
+                                           </tr>
+                                           <tr>
+                                             <td>Maxi Dry Heavy flow
+                                             </td>
+                                           </tr>
+                                           <tr>
+                                            
+                                          </tr>
+                                             <td>Maxi Cottony Aloe-Vera</td>
+                                           
+                                          
+                                          </table>
+                                       </td>
+                                       <td align="center">3</td>
+                                       </tr>
+                                       <tr>
+                                          <th colspan="3">Total</th>
+                                          <th>28</th>
+                                       </tr>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                                   </table>
+                                
+            
+                             </div>
+            
+            
+            
+            
+            
+                           </div>
+                         </div>  
+                        
+                        
+                        <div class="generic_content active clearfix">
+                        
+                        <!--HEAD PRICE DETAIL START-->
+                        <div class="generic_head_price clearfix">
+                        
+                            <!--HEAD CONTENT START-->
+                            <div class="generic_head_content clearfix">
+                            
+                                <!--HEAD START-->
+                                <div class="head_bg"></div>
+                                <div class="head">
+                                    <span>yearly</span>
+                                </div>
+                                <!--//HEAD END-->
+                                
+                            </div>
+                            <!--//HEAD CONTENT END-->
+                            
+                            <!--PRICE START-->
+                            <div class="generic_price_tag clearfix">    
+                                <span class="price">
+                                    <span class="sign">Rs</span>
+                                    <span class="currency">1200</span>
+                                    <span class="cent">.00</span>
+                                    <span class="month">/YEAR</span>
+                                </span>
+                            </div>
+                            <!--//PRICE END-->
+                            
+                        </div>                            
+                        <!--//HEAD PRICE DETAIL END-->
+                        
+                        <!--FEATURE LIST START-->
+                        <div class="generic_feature_list">
+                            <ul>
+                                <li><span>Water</span>  Reminder</li>
+                                <li><span>Period/Pregnancy</span>  Tracker</li>
+                                <li><span>336</span> Sanitary Pads</li>
+                            </ul>
+                        </div>
+                        <!--//FEATURE LIST END-->
+                        
+                        <!--BUTTON START-->
+                        <div class="generic_price_btn clearfix">
+                            <a class="popup-open" href="#" data-popup=".popup-about">Subscribe Now</a>
+                            
+                        </div>
+                        <!--//BUTTON END-->
+                        
+                    </div></div>
+              
+                     </div>
+                   </div>
+                
+
+				
+               </div>
+            </div>
+
+          
+       
+            </div>
+         </div>
+      </div>
+	  <script>
+	   function back(){
+	      location.href="hexagon.html";
+        } 
+		function lock(){
+	      location.href="lockscreen.html";
+        } 		
+	</script>
+      <!-- Path to Framework7 Library Bundle JS-->
+      <script type="text/javascript" src="packages/core/js/framework7.bundle.min.js"></script>
+      <!-- Path to your app js-->
+      <script type="text/javascript" src="js/app.js"></script>
+      
+   </body>
+</html>

@@ -1,0 +1,39 @@
+<link rel="stylesheet" type="text/css" href="loading-bar.css"/>
+    <script type="text/javascript" src="loading-bar.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <input type="hidden" id="consumed" value="0">
+<Center>
+    <div data-preset="bubble" class="ldBar label-center" id="bubble" data-value="0" style="height:300px; width:500px;">
+    </div>
+
+    <input type="hidden" id="glassValue" value="500">
+
+    <a onclick="drinkWater();"><img src="water.png"></a>
+
+    <input type="hidden" id="waterValue" value="0">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+
+    <!---- Script to generate the water flow !------------->
+    <script type="text/javascript">
+
+        function drinkWater(){
+            var consumed=$('#consumed').val();
+            var waterValue=$('#waterValue').val();
+            var glassValue=$('#glassValue').val();
+            var finalValue=parseInt(waterValue)+parseInt(glassValue);
+            $('#waterValue').val(finalValue);
+            var waterValue=$('#waterValue').val();
+            var factorPercentage=2100/100;
+            var percentage=Math.round((waterValue/2100)*100);
+            var finalValue=percentage*factorPercentage;
+            var bar1 = new ldBar("#bubble");
+            var bar2 = document.getElementById('bubble').ldBar;
+            bar1.set(percentage);
+
+
+            
+        }
+    </script>
